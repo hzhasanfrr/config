@@ -1,5 +1,7 @@
 module.exports = {
-  START: 'Start',
-  AUTH_CODE: 'Authorization Code',
-  REFRESH_TOKEN: 'Refresh Token'
+  GOOGLE: "Google Credentials",
+  ACCOUNTS: "Accounts",
+  CATEGORIES: "Categories",
+  EXTRAS: "Extras",
+  GENERATE: "Generate",
 };

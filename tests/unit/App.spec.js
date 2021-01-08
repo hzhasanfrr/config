@@ -1,19 +1,18 @@
-import { expect } from 'chai';
+import { expect } from "chai";
 // import { shallowMount } from '@vue/test-utils';
 
-import App from '@/App.vue';
+import App from "@/App.vue";
 
+import { GOOGLE, ACCOUNTS, CATEGORIES, EXTRAS, GENERATE } from "../../src/lib/workflowStates";
 
-import { START, AUTH_CODE, REFRESH_TOKEN } from '../../src/lib/workflowStates';
-
-describe('App.vue', function() {
-  describe('default data', function() {
+describe("App.vue", function() {
+  describe("default data", function() {
     afterEach(function() {
       window.localStorage.clear();
       window.sessionStorage.clear();
     });
 
-    it('has correct default data when cache is empty', function() {
+    it("has correct default data when cache is empty", function() {
       const {
         form: {
           authEndpoint,
@@ -30,13 +29,18 @@ describe('App.vue', function() {
 
           authCode,
           accessToken,
-          refreshToken
+          refreshToken,
+
+          accountsList,
+
+          categoriesList,
+
+          secretKey,
+          tmdbAPIKey,
+
+          configBox,
         },
-        workflow: {
-          options,
-          showSpinner,
-          state: workflowState
-        }
+        workflow: { options, showSpinner, state: workflowState },
       } = App.data();
 
       expect(authEndpoint).to.be.empty;
@@ -55,9 +59,18 @@ describe('App.vue', function() {
       expect(accessToken).to.be.empty;
       expect(refreshToken).to.be.empty;
 
-      expect(options).to.have.deep.members([START, AUTH_CODE, REFRESH_TOKEN]);
+      expect(accountsList).to.be.empty;
+
+      expect(categoriesList).to.be.empty;
+
+      expect(secretKey).to.be.empty;
+      expect(tmdbAPIKey).to.be.empty;
+
+      expect(configBox).to.be.empty;
+
+      expect(options).to.have.deep.members([GOOGLE, ACCOUNTS, CATEGORIES, EXTRAS, GENERATE]);
       expect(showSpinner).to.be.false;
-      expect(workflowState).to.equal(START);
+      expect(workflowState).to.equal(GOOGLE);
     });
   });
 });
