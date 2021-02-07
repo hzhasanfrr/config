@@ -482,7 +482,7 @@
       <i
         >Source code is available on
         <a
-          href="https://github.com/neverendingqs/oauth2-client-shell-v2"
+          href="https://github.com/libDrive/config"
           target="_blank"
           rel="noopener noreferrer"
           >GitHub</a
