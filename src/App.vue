@@ -10,10 +10,6 @@
       You must add the <code>Redirect URI</code> to your Developer Console web
       client credentials
     </p>
-    <p>
-      This web application stores non-secrets in local storage and secrets in
-      session storage.
-    </p>
     <hr />
 
     <b-form>
@@ -30,37 +26,6 @@
               name="radios-btn-default"
               button-variant="outline-primary"
             ></b-form-radio-group>
-          </b-form-group>
-        </b-col>
-      </b-row>
-
-      <b-row v-if="isGoogle">
-        <b-col lg="6">
-          <b-form-group
-            id="authorization-endpoint-group"
-            label="Authorization Endpoint"
-            label-for="authorization-endpoint-input"
-          >
-            <b-form-input
-              id="authorization-endpoint-input"
-              v-model="form.authEndpoint"
-              type="text"
-              :disabled="true"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-        <b-col lg="6">
-          <b-form-group
-            id="token-endpoint-group"
-            label="Token Endpoint"
-            label-for="token-endpoint-input"
-          >
-            <b-form-input
-              id="token-endpoint-input"
-              v-model="form.tokenEndpoint"
-              type="text"
-              :disabled="true"
-            ></b-form-input>
           </b-form-group>
         </b-col>
       </b-row>
@@ -95,6 +60,37 @@
               placeholder=""
               required
               :state="form.clientSecret.length > 0 ? null : false"
+            ></b-form-input>
+          </b-form-group>
+        </b-col>
+      </b-row>
+
+      <b-row v-if="isGoogle">
+        <b-col lg="6">
+          <b-form-group
+            id="authorization-endpoint-group"
+            label="Authorization Endpoint"
+            label-for="authorization-endpoint-input"
+          >
+            <b-form-input
+              id="authorization-endpoint-input"
+              v-model="form.authEndpoint"
+              type="text"
+              :disabled="true"
+            ></b-form-input>
+          </b-form-group>
+        </b-col>
+        <b-col lg="6">
+          <b-form-group
+            id="token-endpoint-group"
+            label="Token Endpoint"
+            label-for="token-endpoint-input"
+          >
+            <b-form-input
+              id="token-endpoint-input"
+              v-model="form.tokenEndpoint"
+              type="text"
+              :disabled="true"
             ></b-form-input>
           </b-form-group>
         </b-col>
@@ -192,6 +188,7 @@
                 id="access-token-input"
                 v-model="form.accessToken"
                 type="text"
+                :disabled="true"
               ></b-form-input>
               <b-input-group-append>
                 <b-button variant="primary" v-clipboard:copy="form.accessToken"
@@ -212,6 +209,7 @@
                 id="refresh-token-input"
                 v-model="form.refreshToken"
                 type="text"
+                :disabled="true"
               ></b-form-input>
               <b-input-group-append>
                 <b-button variant="primary" v-clipboard:copy="form.refreshToken"
@@ -247,6 +245,10 @@
                 id="accounts-username-input"
                 v-model="form.accountsList[index].username"
                 type="text"
+                required
+                :state="
+                  form.accountsList[index].username.length > 0 ? null : false
+                "
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -260,7 +262,10 @@
                 id="accounts-password-input"
                 v-model="form.accountsList[index].password"
                 type="password"
-                placeholder=""
+                required
+                :state="
+                  form.accountsList[index].password.length > 0 ? null : false
+                "
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -351,6 +356,10 @@
                 id="category-name-input"
                 v-model="form.categoriesList[index].name"
                 type="text"
+                required
+                :state="
+                  form.categoriesList[index].name.length > 0 ? null : false
+                "
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -364,6 +373,8 @@
                 id="category-id-input"
                 v-model="form.categoriesList[index].id"
                 type="text"
+                required
+                :state="form.categoriesList[index].id.length > 0 ? null : false"
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -377,7 +388,10 @@
                 id="category-driveid-input"
                 v-model="form.categoriesList[index].driveId"
                 type="text"
-                placeholder=""
+                required
+                :state="
+                  form.categoriesList[index].driveId.length > 0 ? null : false
+                "
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -408,6 +422,8 @@
               id="secret-key-input"
               v-model="form.secretKey"
               type="text"
+              required
+              :state="form.secretKey.length > 0 ? null : false"
             ></b-form-input>
           </b-input-group>
         </b-form-group>
@@ -423,6 +439,8 @@
               id="tmdb-api-key-input"
               v-model="form.tmdbAPIKey"
               type="text"
+              required
+              :state="form.tmdbAPIKey.length > 0 ? null : false"
             ></b-form-input>
           </b-input-group>
         </b-form-group>
