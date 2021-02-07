@@ -1,22 +1,29 @@
-# oauth2-client-shell-v2
+<a href="#">
+  <h3 align="center">
+    <img src="https://i.ibb.co/HVB5Dw1/lib-Drive-Header.png" width="600px" />
+  </h3>
+</a>
 
-Interface for going through the OAuth 2.0 authorization code grant flow as per
-[RFC 6749 section 4](https://tools.ietf.org/html/rfc6749#section-4). Uses local
-and session storage to store state. This is a refresh of
-[oauth2-client-shell](https://github.com/neverendingqs/oauth2-client-shell).
+<p align="center">
+  <a href="https://github.com/libDrive/libDrive/releases">
+    <img src="https://img.shields.io/github/downloads/libDrive/libDrive/total?color=%234197fe&style=for-the-badge" />
+  </a>
+  <a href="https://github.com/libDrive/libDrive/releases/latest">
+    <img src="https://img.shields.io/github/v/release/libDrive/libDrive?color=%234197fe&style=for-the-badge" />
+  </a>
+</p>
 
-## Running a Local Version
+<p align="center">
+  <a href="https://eliasbenb.github.io">
+    <img src="https://i.ibb.co/rmDXnnk/Magnet-Magnet-prod.png" width="180" />
+  </a>
+</p>
 
-The local version uses a self-signed SSL certificate from
-[openssl-self-signed-certificate](https://www.npmjs.com/package/openssl-self-signed-certificate).
+# What is this repo?
 
-```sh
-# Install npm dependencies
-npm i
+This is the config repositry for the [libDrive](https://github.com/libDrive) project, created by [Elias Benbourenane](https://eliasbenb.github.io).
 
-# Build the site
-npm run build
+View instructions on how to setup libDrive from [the main repositry](https://github.com/libDrive/libDrive)
 
-# Start the site
-npm run start
-```
+# Demo
+<https://libdrive-config.netlify.app/>
