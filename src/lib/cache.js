@@ -1,23 +1,23 @@
 module.exports = {
   get authEndPoint() {
-    return window.localStorage.getItem("authEndpoint") || "";
+    return window.sessionStorage.getItem("authEndpoint") || "";
   },
   set authEndPoint(value) {
-    window.localStorage.setItem("authEndpoint", "");
+    window.sessionStorage.setItem("authEndpoint", "");
   },
 
   get tokenEndpoint() {
-    return window.localStorage.getItem("tokenEndpoint") || "";
+    return window.sessionStorage.getItem("tokenEndpoint") || "";
   },
   set tokenEndpoint(value) {
-    window.localStorage.setItem("tokenEndpoint", value);
+    window.sessionStorage.setItem("tokenEndpoint", value);
   },
 
   get clientId() {
-    return window.localStorage.getItem("clientId") || "";
+    return window.sessionStorage.getItem("clientId") || "";
   },
   set clientId(value) {
-    window.localStorage.setItem("clientId", value);
+    window.sessionStorage.setItem("clientId", value);
   },
 
   get clientSecret() {
@@ -28,24 +28,24 @@ module.exports = {
   },
 
   get scope() {
-    return window.localStorage.getItem("scope") || "";
+    return window.sessionStorage.getItem("scope") || "";
   },
   set scope(value) {
-    window.localStorage.setItem("scope", value);
+    window.sessionStorage.setItem("scope", value);
   },
 
   get customParameters() {
-    return window.localStorage.getItem("customParameters") || "";
+    return window.sessionStorage.getItem("customParameters") || "";
   },
   set customParameters(value) {
-    window.localStorage.setItem("customParameters", value);
+    window.sessionStorage.setItem("customParameters", value);
   },
 
   get state() {
-    return window.localStorage.getItem("state") || "";
+    return window.sessionStorage.getItem("state") || "";
   },
   set state(value) {
-    window.localStorage.setItem("state", value);
+    window.sessionStorage.setItem("state", value);
   },
 
   get authCode() {
@@ -70,31 +70,31 @@ module.exports = {
   },
 
   get accountsList() {
-    return JSON.parse(window.localStorage.getItem("accountsList")) || [];
+    return JSON.parse(window.sessionStorage.getItem("accountsList")) || [];
   },
   set accountsList(value) {
-    window.localStorage.setItem("accountsList", JSON.stringify(value));
+    window.sessionStorage.setItem("accountsList", JSON.stringify(value));
   },
 
   get categoriesList() {
-    return JSON.parse(window.localStorage.getItem("categoriesList")) || [];
+    return JSON.parse(window.sessionStorage.getItem("categoriesList")) || [];
   },
   set categoriesList(value) {
-    window.localStorage.setItem("categoriesList", JSON.stringify(value));
+    window.sessionStorage.setItem("categoriesList", JSON.stringify(value));
   },
 
   get secretKey() {
-    return window.localStorage.getItem("secretKey") || "";
+    return window.sessionStorage.getItem("secretKey") || "";
   },
   set secretKey(value) {
-    window.localStorage.setItem("secretKey", value);
+    window.sessionStorage.setItem("secretKey", value);
   },
 
   get tmdbAPIKey() {
-    return window.localStorage.getItem("tmdbAPIKey") || "";
+    return window.sessionStorage.getItem("tmdbAPIKey") || "";
   },
   set tmdbAPIKey(value) {
-    window.localStorage.setItem("tmdbAPIKey", value);
+    window.sessionStorage.setItem("tmdbAPIKey", value);
   },
 
   get configBox() {

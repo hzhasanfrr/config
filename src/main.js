@@ -7,16 +7,16 @@ import App from "./App.vue";
 
 Vue.config.productionTip = false;
 
-window.localStorage.setItem(
+window.sessionStorage.setItem(
   "authEndpoint",
   "https://accounts.google.com/o/oauth2/v2/auth"
 );
-window.localStorage.setItem(
+window.sessionStorage.setItem(
   "tokenEndpoint",
   "https://www.googleapis.com/oauth2/v4/token"
 );
-window.localStorage.setItem("scope", "https://www.googleapis.com/auth/drive");
-window.localStorage.setItem(
+window.sessionStorage.setItem("scope", "https://www.googleapis.com/auth/drive");
+window.sessionStorage.setItem(
   "customParameters",
   "access_type=offline&prompt=select_account+consent"
 );

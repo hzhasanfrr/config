@@ -3,16 +3,21 @@ import { expect } from "chai";
 
 import App from "@/App.vue";
 
-import { GOOGLE, ACCOUNTS, CATEGORIES, EXTRAS, GENERATE } from "../../src/lib/workflowStates";
+import {
+  GOOGLE,
+  ACCOUNTS,
+  CATEGORIES,
+  EXTRAS,
+  GENERATE,
+} from "../../src/lib/workflowStates";
 
-describe("App.vue", function() {
-  describe("default data", function() {
-    afterEach(function() {
-      window.localStorage.clear();
+describe("App.vue", function () {
+  describe("default data", function () {
+    afterEach(function () {
       window.sessionStorage.clear();
     });
 
-    it("has correct default data when cache is empty", function() {
+    it("has correct default data when cache is empty", function () {
       const {
         form: {
           authEndpoint,
@@ -68,7 +73,13 @@ describe("App.vue", function() {
 
       expect(configBox).to.be.empty;
 
-      expect(options).to.have.deep.members([GOOGLE, ACCOUNTS, CATEGORIES, EXTRAS, GENERATE]);
+      expect(options).to.have.deep.members([
+        GOOGLE,
+        ACCOUNTS,
+        CATEGORIES,
+        EXTRAS,
+        GENERATE,
+      ]);
       expect(showSpinner).to.be.false;
       expect(workflowState).to.equal(GOOGLE);
     });
