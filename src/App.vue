@@ -298,12 +298,14 @@
     </div>
 
     <b-row v-if="isAccounts">
-      <b-col>
-        <b-button variant="primary" @click="appendAccounts">
-          Add Account
-          <b-spinner small v-if="workflow.showSpinner" />
-        </b-button>
-      </b-col>
+      <b-button variant="primary" class="ml-3" @click="appendAccounts">
+        Add Account
+        <b-spinner small v-if="workflow.showSpinner" />
+      </b-button>
+      <b-button variant="primary" class="ml-2" @click="removeAccounts">
+        Remove Account
+        <b-spinner small v-if="workflow.showSpinner" />
+      </b-button>
     </b-row>
 
     <div v-if="isCategories">
@@ -384,12 +386,14 @@
     </div>
 
     <b-row v-if="isCategories">
-      <b-col>
-        <b-button variant="primary" @click="appendCategories">
-          Add Category
-          <b-spinner small v-if="workflow.showSpinner" />
-        </b-button>
-      </b-col>
+      <b-button variant="primary" class="ml-3" @click="appendCategories">
+        Add Category
+        <b-spinner small v-if="workflow.showSpinner" />
+      </b-button>
+      <b-button variant="primary" class="ml-2" @click="removeCategories">
+        Remove Category
+        <b-spinner small v-if="workflow.showSpinner" />
+      </b-button>
     </b-row>
 
     <b-row v-if="isExtras">
@@ -672,6 +676,11 @@ export default {
         auth: generateState(),
       });
     },
+    async removeAccounts() {
+      this.updateAllCacheValues();
+
+      this.form.accountsList.pop();
+    },
     async appendCategories() {
       this.updateAllCacheValues();
 
@@ -681,6 +690,11 @@ export default {
         id: "",
         driveId: "",
       });
+    },
+    async removeCategories() {
+      this.updateAllCacheValues();
+
+      this.form.categoriesList.pop();
     },
     async returnConfig() {
       this.updateAllCacheValues();
