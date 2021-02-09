@@ -39,11 +39,11 @@
           >
             <b-form-input
               id="client-id-input"
-              v-model="form.clientId"
+              v-model="form.client_id"
               type="text"
               placeholder=""
               required
-              :state="form.clientId.length > 0 ? null : false"
+              :state="form.client_id.length > 0 ? null : false"
             ></b-form-input>
           </b-form-group>
         </b-col>
@@ -55,11 +55,11 @@
           >
             <b-form-input
               id="client-secret-input"
-              v-model="form.clientSecret"
+              v-model="form.client_secret"
               type="text"
               placeholder=""
               required
-              :state="form.clientSecret.length > 0 ? null : false"
+              :state="form.client_secret.length > 0 ? null : false"
             ></b-form-input>
           </b-form-group>
         </b-col>
@@ -186,12 +186,12 @@
             <b-input-group>
               <b-form-input
                 id="access-token-input"
-                v-model="form.accessToken"
+                v-model="form.access_token"
                 type="text"
                 :disabled="true"
               ></b-form-input>
               <b-input-group-append>
-                <b-button variant="primary" v-clipboard:copy="form.accessToken"
+                <b-button variant="primary" v-clipboard:copy="form.access_token"
                   >Copy</b-button
                 >
               </b-input-group-append>
@@ -207,12 +207,12 @@
             <b-input-group>
               <b-form-input
                 id="refresh-token-input"
-                v-model="form.refreshToken"
+                v-model="form.refresh_token"
                 type="text"
                 :disabled="true"
               ></b-form-input>
               <b-input-group-append>
-                <b-button variant="primary" v-clipboard:copy="form.refreshToken"
+                <b-button variant="primary" v-clipboard:copy="form.refresh_token"
                   >Copy</b-button
                 >
               </b-input-group-append>
@@ -232,7 +232,7 @@
     </b-form>
 
     <div v-if="isAccounts">
-      <div v-for="(account, index) in form.accountsList" v-bind:key="account">
+      <div v-for="(account, index) in form.account_list" v-bind:key="account">
         <b-card-title :title="'Account ' + index"></b-card-title>
         <b-row v-if="isAccounts">
           <b-col lg="6">
@@ -243,11 +243,11 @@
             >
               <b-form-input
                 id="accounts-username-input"
-                v-model="form.accountsList[index].username"
+                v-model="form.account_list[index].username"
                 type="text"
                 required
                 :state="
-                  form.accountsList[index].username.length > 0 ? null : false
+                  form.account_list[index].username.length > 0 ? null : false
                 "
               ></b-form-input>
             </b-form-group>
@@ -260,11 +260,11 @@
             >
               <b-form-input
                 id="accounts-password-input"
-                v-model="form.accountsList[index].password"
+                v-model="form.account_list[index].password"
                 type="password"
                 required
                 :state="
-                  form.accountsList[index].password.length > 0 ? null : false
+                  form.account_list[index].password.length > 0 ? null : false
                 "
               ></b-form-input>
             </b-form-group>
@@ -277,7 +277,7 @@
             >
               <b-form-input
                 id="accounts-pic-input"
-                v-model="form.accountsList[index].pic"
+                v-model="form.account_list[index].pic"
                 type="text"
                 placeholder=""
               ></b-form-input>
@@ -291,7 +291,7 @@
             >
               <b-form-input
                 id="accounts-auth-input"
-                v-model="form.accountsList[index].auth"
+                v-model="form.account_list[index].auth"
                 type="text"
                 placeholder=""
                 :disabled="true"
@@ -315,7 +315,7 @@
 
     <div v-if="isCategories">
       <div
-        v-for="(category, index) in form.categoriesList"
+        v-for="(category, index) in form.cetegory_list"
         v-bind:key="category"
       >
         <b-card-title :title="'Category ' + index"></b-card-title>
@@ -328,9 +328,9 @@
             >
               <b-dropdown
                 variant="primary"
-                :text="form.categoriesList[index].type"
+                :text="form.cetegory_list[index].type"
                 id="category-type-input"
-                v-model="form.categoriesList[index].type"
+                v-model="form.cetegory_list[index].type"
               >
                 <b-dropdown-item disabled value="0"
                   >Select the media library's type</b-dropdown-item
@@ -339,7 +339,7 @@
                   v-for="option in ['Movies', 'TV Shows', 'Other']"
                   :key="option"
                   :value="option"
-                  @click="form.categoriesList[index].type = option"
+                  @click="form.cetegory_list[index].type = option"
                 >
                   {{ option }}
                 </b-dropdown-item>
@@ -354,11 +354,11 @@
             >
               <b-form-input
                 id="category-name-input"
-                v-model="form.categoriesList[index].name"
+                v-model="form.cetegory_list[index].name"
                 type="text"
                 required
                 :state="
-                  form.categoriesList[index].name.length > 0 ? null : false
+                  form.cetegory_list[index].name.length > 0 ? null : false
                 "
               ></b-form-input>
             </b-form-group>
@@ -371,10 +371,10 @@
             >
               <b-form-input
                 id="category-id-input"
-                v-model="form.categoriesList[index].id"
+                v-model="form.cetegory_list[index].id"
                 type="text"
                 required
-                :state="form.categoriesList[index].id.length > 0 ? null : false"
+                :state="form.cetegory_list[index].id.length > 0 ? null : false"
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -386,11 +386,11 @@
             >
               <b-form-input
                 id="category-driveid-input"
-                v-model="form.categoriesList[index].driveId"
+                v-model="form.cetegory_list[index].driveId"
                 type="text"
                 required
                 :state="
-                  form.categoriesList[index].driveId.length > 0 ? null : false
+                  form.cetegory_list[index].driveId.length > 0 ? null : false
                 "
               ></b-form-input>
             </b-form-group>
@@ -420,10 +420,10 @@
           <b-input-group>
             <b-form-input
               id="secret-key-input"
-              v-model="form.secretKey"
+              v-model="form.secret_key"
               type="text"
               required
-              :state="form.secretKey.length > 0 ? null : false"
+              :state="form.secret_key.length > 0 ? null : false"
             ></b-form-input>
           </b-input-group>
         </b-form-group>
@@ -437,10 +437,10 @@
           <b-input-group>
             <b-form-input
               id="tmdb-api-key-input"
-              v-model="form.tmdbAPIKey"
+              v-model="form.tmdb_api_key"
               type="text"
               required
-              :state="form.tmdbAPIKey.length > 0 ? null : false"
+              :state="form.tmdb_api_key.length > 0 ? null : false"
             ></b-form-input>
           </b-input-group>
         </b-form-group>
@@ -478,11 +478,20 @@
       <b-button
         variant="primary"
         class="mr-2"
+        @click="importFromFile"
+      >
+        Import
+        <b-spinner small v-if="workflow.showSpinner" />
+      </b-button>
+      <b-button
+        variant="primary"
+        class="mr-2"
         v-clipboard:copy="form.configBox"
       >
         Copy
         <b-spinner small v-if="workflow.showSpinner" />
       </b-button>
+      <input id="file-input" type="file" accept=".env" style="display: none;" @change="handleFileChange">
     </b-row>
 
     <hr />
@@ -503,15 +512,15 @@
 <script>
 import rand from "csprng";
 import cache, {
-  accessToken,
-  accountsList,
-  categoriesList,
-  clientId,
-  clientSecret,
+  access_token,
+  account_list,
+  cetegory_list,
+  client_id,
+  client_secret,
   configBox,
-  refreshToken,
-  secretKey,
-  tmdbAPIKey,
+  refresh_token,
+  secret_key,
+  tmdb_api_key,
 } from "./lib/cache";
 import {
   GOOGLE,
@@ -561,8 +570,8 @@ export default {
         authEndpoint: cache.authEndPoint,
         tokenEndpoint: cache.tokenEndpoint,
 
-        clientId: cache.clientId,
-        clientSecret: cache.clientSecret,
+        client_id: cache.client_id,
+        client_secret: cache.client_secret,
 
         redirectUri: "",
         scope: cache.scope,
@@ -571,15 +580,15 @@ export default {
         state: cache.state || generateState(),
 
         authCode: cache.authCode,
-        accessToken: cache.accessToken,
-        refreshToken: cache.refreshToken,
+        access_token: cache.access_token,
+        refresh_token: cache.refresh_token,
 
-        accountsList: cache.accountsList,
+        account_list: cache.account_list,
 
-        categoriesList: cache.categoriesList,
+        cetegory_list: cache.cetegory_list,
 
-        secretKey: cache.secretKey,
-        tmdbAPIKey: cache.tmdbAPIKey,
+        secret_key: cache.secret_key,
+        tmdb_api_key: cache.tmdb_api_key,
 
         configBox: cache.configBox,
       },
@@ -596,7 +605,7 @@ export default {
       let query = objToFormEncoded({
         response_type: "code",
         redirect_uri: this.form.redirectUri,
-        client_id: this.form.clientId,
+        client_id: this.form.client_id,
         scope: this.form.scope,
         state: this.form.state,
       });
@@ -625,7 +634,7 @@ export default {
         method: "POST",
         headers: {
           Authorization: `Basic ${btoa(
-            `${this.form.clientId}:${this.form.clientSecret}`
+            `${this.form.client_id}:${this.form.client_secret}`
           )}`,
           "Content-Type": "application/x-www-form-urlencoded",
         },
@@ -669,17 +678,17 @@ export default {
       );
 
       this.form.authCode = `(Used) ${this.form.authCode}`;
-      this.form.accessToken = access_token;
-      this.form.refreshToken =
+      this.form.access_token = access_token;
+      this.form.refresh_token =
         refresh_token || "Not provided by authorization server.";
       this.workflow.state = GOOGLE;
     },
-    async tradeInRefreshToken() {
+    async tradeInrefresh_token() {
       this.updateAllCacheValues();
 
       const body = {
         grant_type: "refresh_token",
-        refresh_token: this.form.refreshToken,
+        refresh_token: this.form.refresh_token,
         scope: this.form.scope,
       };
 
@@ -688,14 +697,14 @@ export default {
         GOOGLE
       );
 
-      this.form.accessToken = access_token;
-      this.form.refreshToken = refresh_token || this.form.refreshToken;
+      this.form.access_token = access_token;
+      this.form.refresh_token = refresh_token || this.form.refresh_token;
       this.workflow.state = GOOGLE;
     },
     async appendAccounts() {
       this.updateAllCacheValues();
 
-      this.form.accountsList.push({
+      this.form.account_list.push({
         username: "",
         password: "",
         pic: "",
@@ -705,12 +714,12 @@ export default {
     async removeAccounts() {
       this.updateAllCacheValues();
 
-      this.form.accountsList.pop();
+      this.form.account_list.pop();
     },
     async appendCategories() {
       this.updateAllCacheValues();
 
-      this.form.categoriesList.push({
+      this.form.cetegory_list.push({
         type: "",
         name: "",
         id: "",
@@ -720,16 +729,16 @@ export default {
     async removeCategories() {
       this.updateAllCacheValues();
 
-      this.form.categoriesList.pop();
+      this.form.cetegory_list.pop();
     },
     async returnConfig() {
       this.updateAllCacheValues();
 
-      let config = `[CONFIG]\naccess_token=${accessToken}\naccount_list=${JSON.stringify(
-        accountsList
+      let config = `[CONFIG]\naccess_token=${access_token}\naccount_list=${JSON.stringify(
+        account_list
       )}\ncategory_list=${JSON.stringify(
-        categoriesList
-      )}\nclient_id=${clientId}\nclient_secret=${clientSecret}\nrefresh_token=${refreshToken}\nsecret_key=${secretKey}\ntmdb_api_key=${tmdbAPIKey}\ntoken_expiry=`;
+        cetegory_list
+      )}\nclient_id=${client_id}\nclient_secret=${client_secret}\nrefresh_token=${refresh_token}\nsecret_key=${secret_key}\ntmdb_api_key=${tmdb_api_key}\ntoken_expiry=`;
       this.form.configBox = config;
       this.updateAllCacheValues();
     },
@@ -749,21 +758,50 @@ export default {
 
       URL.revokeObjectURL(a.href);
     },
+    async importFromFile() {
+      document.getElementById('file-input').click();
+    },
+    async handleFileChange(e) {
+      console.log(this.form);
+      var files = e.target.files || e.dataTransfer.files;
+      var form = {};
+      if (!files.length)
+        return;
+      let reader = new FileReader();
+      reader.readAsText(files[0]);
+      reader.onload = () => {
+        var lines = reader.result;
+        this.form.configBox = lines;
+        lines = lines.split("\n");
+        for (const i in lines) {
+          if (lines[i].includes("=")) {
+            var line = lines[i].split("=");
+            eval("form." + line[0] + "= line[1]");
+          }
+        this.form = { ...this.form, ...form }; 
+        console.log(this.form);
+        }
+      };
+      reader.onerror = () => {
+        return;
+      };
+      this.updateAllCacheValues();
+    },
     updateAllCacheValues() {
       cache.authEndPoint = this.form.authEndpoint;
       cache.tokenEndpoint = this.form.tokenEndpoint;
-      cache.clientId = this.form.clientId;
-      cache.clientSecret = this.form.clientSecret;
+      cache.client_id = this.form.client_id;
+      cache.client_secret = this.form.client_secret;
       cache.scope = this.form.scope;
       cache.customParameters = this.form.customParameters;
       cache.state = this.form.state;
       cache.authCode = this.form.authCode;
-      cache.accessToken = this.form.accessToken;
-      cache.refreshToken = this.form.refreshToken;
-      cache.accountsList = this.form.accountsList;
-      cache.categoriesList = this.form.categoriesList;
-      cache.secretKey = this.form.secretKey;
-      cache.tmdbAPIKey = this.form.tmdbAPIKey;
+      cache.access_token = this.form.access_token;
+      cache.refresh_token = this.form.refresh_token;
+      cache.account_list = this.form.account_list;
+      cache.cetegory_list = this.form.cetegory_list;
+      cache.secret_key = this.form.secret_key;
+      cache.tmdb_api_key = this.form.tmdb_api_key;
       cache.configBox = this.form.configBox;
     },
   },

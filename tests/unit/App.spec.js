@@ -23,8 +23,8 @@ describe("App.vue", function () {
           authEndpoint,
           tokenEndpoint,
 
-          clientId,
-          clientSecret,
+          client_id,
+          client_secret,
 
           redirectUri,
           scope,
@@ -33,15 +33,15 @@ describe("App.vue", function () {
           state: formState,
 
           authCode,
-          accessToken,
-          refreshToken,
+          access_token,
+          refresh_token,
 
-          accountsList,
+          account_list,
 
-          categoriesList,
+          cetegory_list,
 
-          secretKey,
-          tmdbAPIKey,
+          secret_key,
+          tmdb_api_key,
 
           configBox,
         },
@@ -51,8 +51,8 @@ describe("App.vue", function () {
       expect(authEndpoint).to.be.empty;
       expect(tokenEndpoint).to.be.empty;
 
-      expect(clientId).to.be.empty;
-      expect(clientSecret).to.be.empty;
+      expect(client_id).to.be.empty;
+      expect(client_secret).to.be.empty;
 
       expect(redirectUri).to.be.empty;
       expect(scope).to.be.empty;
@@ -61,15 +61,15 @@ describe("App.vue", function () {
       expect(formState).to.not.be.empty;
 
       expect(authCode).to.be.empty;
-      expect(accessToken).to.be.empty;
-      expect(refreshToken).to.be.empty;
+      expect(access_token).to.be.empty;
+      expect(refresh_token).to.be.empty;
 
-      expect(accountsList).to.be.empty;
+      expect(account_list).to.be.empty;
 
-      expect(categoriesList).to.be.empty;
+      expect(cetegory_list).to.be.empty;
 
-      expect(secretKey).to.be.empty;
-      expect(tmdbAPIKey).to.be.empty;
+      expect(secret_key).to.be.empty;
+      expect(tmdb_api_key).to.be.empty;
 
       expect(configBox).to.be.empty;
 
