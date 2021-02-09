@@ -470,6 +470,14 @@
       <b-button
         variant="primary"
         class="mr-2"
+        @click="downloadToFile"
+      >
+        Download
+        <b-spinner small v-if="workflow.showSpinner" />
+      </b-button>
+      <b-button
+        variant="primary"
+        class="mr-2"
         v-clipboard:copy="form.configBox"
       >
         Copy
@@ -730,6 +738,16 @@ export default {
 
       let newConfig = configBox.replaceAll("\n", "\\n");
       this.form.configBox = newConfig;
+    },
+    async downloadToFile() {
+      const a = document.createElement("a");
+      const file = new Blob([this.form.configBox], { type: 'text/plain' });
+
+      a.href = URL.createObjectURL(file);
+      a.download = 'config.env';
+      a.click();
+
+      URL.revokeObjectURL(a.href);
     },
     updateAllCacheValues() {
       cache.authEndPoint = this.form.authEndpoint;
