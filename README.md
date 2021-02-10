@@ -25,11 +25,14 @@
   </a>
 </p>
 
+<p align="center">
+  <a href="https://t.me/libdrive_support">
+    <img src="https://cdn0.iconfinder.com/data/icons/social-network-24/512/Telegram-64.png" />
+  </a>
+</p>
+
 # What is this repo?
 
-This is the config repositry for the [libDrive](https://github.com/libDrive) project, created by [Elias Benbourenane](https://eliasbenb.github.io).
+libDrive is a media library manager, similar to [Plex](https://www.plex.tv), that organizes Google Drive folders and offers an intuitive interface to explore them
 
-View instructions on how to setup libDrive from [the main repositry](https://github.com/libDrive/libDrive)
-
-# Demo
-<https://libdrive-config.netlify.app/>
+This repository (<https://github.com/libDrive/config>) contains the source code for the libDrive config generator (<https://libdrive-config.netlify.app>)
