@@ -38,7 +38,7 @@ describe("App.vue", function () {
 
           account_list,
 
-          cetegory_list,
+          category_list,
 
           secret_key,
           tmdb_api_key,
@@ -66,7 +66,7 @@ describe("App.vue", function () {
 
       expect(account_list).to.be.empty;
 
-      expect(cetegory_list).to.be.empty;
+      expect(category_list).to.be.empty;
 
       expect(secret_key).to.be.empty;
       expect(tmdb_api_key).to.be.empty;

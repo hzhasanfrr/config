@@ -76,11 +76,11 @@ module.exports = {
     window.sessionStorage.setItem("account_list", JSON.stringify(value));
   },
 
-  get cetegory_list() {
-    return JSON.parse(window.sessionStorage.getItem("cetegory_list")) || [];
+  get category_list() {
+    return JSON.parse(window.sessionStorage.getItem("category_list")) || [];
   },
-  set cetegory_list(value) {
-    window.sessionStorage.setItem("cetegory_list", JSON.stringify(value));
+  set category_list(value) {
+    window.sessionStorage.setItem("category_list", JSON.stringify(value));
   },
 
   get secret_key() {

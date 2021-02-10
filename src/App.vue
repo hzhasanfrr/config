@@ -315,7 +315,7 @@
 
     <div v-if="isCategories">
       <div
-        v-for="(category, index) in form.cetegory_list"
+        v-for="(category, index) in form.category_list"
         v-bind:key="category"
       >
         <b-card-title :title="'Category ' + index"></b-card-title>
@@ -328,9 +328,9 @@
             >
               <b-dropdown
                 variant="primary"
-                :text="form.cetegory_list[index].type"
+                :text="form.category_list[index].type"
                 id="category-type-input"
-                v-model="form.cetegory_list[index].type"
+                v-model="form.category_list[index].type"
               >
                 <b-dropdown-item disabled value="0"
                   >Select the media library's type</b-dropdown-item
@@ -339,7 +339,7 @@
                   v-for="option in ['Movies', 'TV Shows', 'Other']"
                   :key="option"
                   :value="option"
-                  @click="form.cetegory_list[index].type = option"
+                  @click="form.category_list[index].type = option"
                 >
                   {{ option }}
                 </b-dropdown-item>
@@ -354,11 +354,11 @@
             >
               <b-form-input
                 id="category-name-input"
-                v-model="form.cetegory_list[index].name"
+                v-model="form.category_list[index].name"
                 type="text"
                 required
                 :state="
-                  form.cetegory_list[index].name.length > 0 ? null : false
+                  form.category_list[index].name.length > 0 ? null : false
                 "
               ></b-form-input>
             </b-form-group>
@@ -371,10 +371,10 @@
             >
               <b-form-input
                 id="category-id-input"
-                v-model="form.cetegory_list[index].id"
+                v-model="form.category_list[index].id"
                 type="text"
                 required
-                :state="form.cetegory_list[index].id.length > 0 ? null : false"
+                :state="form.category_list[index].id.length > 0 ? null : false"
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -386,11 +386,11 @@
             >
               <b-form-input
                 id="category-driveid-input"
-                v-model="form.cetegory_list[index].driveId"
+                v-model="form.category_list[index].driveId"
                 type="text"
                 required
                 :state="
-                  form.cetegory_list[index].driveId.length > 0 ? null : false
+                  form.category_list[index].driveId.length > 0 ? null : false
                 "
               ></b-form-input>
             </b-form-group>
@@ -514,7 +514,7 @@ import rand from "csprng";
 import cache, {
   access_token,
   account_list,
-  cetegory_list,
+  category_list,
   client_id,
   client_secret,
   configBox,
@@ -585,7 +585,7 @@ export default {
 
         account_list: cache.account_list,
 
-        cetegory_list: cache.cetegory_list,
+        category_list: cache.category_list,
 
         secret_key: cache.secret_key,
         tmdb_api_key: cache.tmdb_api_key,
@@ -719,7 +719,7 @@ export default {
     async appendCategories() {
       this.updateAllCacheValues();
 
-      this.form.cetegory_list.push({
+      this.form.category_list.push({
         type: "",
         name: "",
         id: "",
@@ -729,7 +729,7 @@ export default {
     async removeCategories() {
       this.updateAllCacheValues();
 
-      this.form.cetegory_list.pop();
+      this.form.category_list.pop();
     },
     async returnConfig() {
       this.updateAllCacheValues();
@@ -737,7 +737,7 @@ export default {
       let config = `[CONFIG]\naccess_token=${access_token}\naccount_list=${JSON.stringify(
         account_list
       )}\ncategory_list=${JSON.stringify(
-        cetegory_list
+        category_list
       )}\nclient_id=${client_id}\nclient_secret=${client_secret}\nrefresh_token=${refresh_token}\nsecret_key=${secret_key}\ntmdb_api_key=${tmdb_api_key}\ntoken_expiry=`;
       this.form.configBox = config;
       this.updateAllCacheValues();
@@ -776,10 +776,14 @@ export default {
         for (const i in lines) {
           if (lines[i].includes("=")) {
             var line = lines[i].split("=");
+            if (line[0] == "account_list") {
+              line[1] = JSON.parse(line[1]);
+            } else if (line[0] == "category_list") {
+              line[1] = JSON.parse(line[1]);
+            }
             eval("form." + line[0] + "= line[1]");
           }
         this.form = { ...this.form, ...form }; 
-        console.log(this.form);
         }
       };
       reader.onerror = () => {
@@ -799,7 +803,7 @@ export default {
       cache.access_token = this.form.access_token;
       cache.refresh_token = this.form.refresh_token;
       cache.account_list = this.form.account_list;
-      cache.cetegory_list = this.form.cetegory_list;
+      cache.category_list = this.form.category_list;
       cache.secret_key = this.form.secret_key;
       cache.tmdb_api_key = this.form.tmdb_api_key;
       cache.configBox = this.form.configBox;
