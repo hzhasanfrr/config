@@ -27,6 +27,13 @@ module.exports = {
     window.sessionStorage.setItem("client_secret", value);
   },
 
+  get cloudflare() {
+    return window.sessionStorage.getItem("cloudflare") || "";
+  },
+  set cloudflare(value) {
+    window.sessionStorage.setItem("cloudflare", value);
+  },
+
   get scope() {
     return window.sessionStorage.getItem("scope") || "";
   },

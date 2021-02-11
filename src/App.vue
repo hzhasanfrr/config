@@ -447,6 +447,24 @@
       </b-col>
     </b-row>
 
+    <b-row v-if="isExtras">
+      <b-col lg="6">
+        <b-form-group
+          id="cloudflare-group"
+          label="Cloudflare"
+          label-for="cloudflare-input"
+        >
+          <b-input-group>
+            <b-form-input
+              id="cloudflare-input"
+              v-model="form.cloudflare"
+              type="text"
+            ></b-form-input>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+    </b-row>
+
     <b-row v-if="isGenerate">
       <b-form-textarea
         id="textarea"
@@ -491,7 +509,7 @@
         Copy
         <b-spinner small v-if="workflow.showSpinner" />
       </b-button>
-      <input id="file-input" type="file" accept=".env" style="display: none;" @change="handleFileChange">
+      <input id="file-input" type="file" accept=".json" style="display: none;" @change="handleFileChange">
     </b-row>
 
     <hr />
@@ -511,17 +529,7 @@
 
 <script>
 import rand from "csprng";
-import cache, {
-  access_token,
-  account_list,
-  category_list,
-  client_id,
-  client_secret,
-  configBox,
-  refresh_token,
-  secret_key,
-  tmdb_api_key,
-} from "./lib/cache";
+import cache from "./lib/cache";
 import {
   GOOGLE,
   ACCOUNTS,
@@ -589,6 +597,7 @@ export default {
 
         secret_key: cache.secret_key,
         tmdb_api_key: cache.tmdb_api_key,
+        cloudflare: cache.cloudflare,
 
         configBox: cache.configBox,
       },
@@ -732,28 +741,43 @@ export default {
       this.form.category_list.pop();
     },
     async returnConfig() {
-      this.updateAllCacheValues();
+      let config = {};
+      config.access_token = this.form.access_token;
+      config.account_list = this.form.account_list;
+      config.category_list = this.form.category_list;
+      config.client_id = this.form.client_id;
+      config.client_secret = this.form.client_secret;
+      config.cloudflare = this.form.cloudflare;
+      config.refresh_token = this.form.refresh_token;
+      config.secret_key = this.form.secret_key;
+      config.tmdb_api_key = this.form.tmdb_api_key;
+      config.token_expiry = "";
+      this.form.configBox =  JSON.stringify(config, null, 4);
 
-      let config = `[CONFIG]\naccess_token=${access_token}\naccount_list=${JSON.stringify(
-        account_list
-      )}\ncategory_list=${JSON.stringify(
-        category_list
-      )}\nclient_id=${client_id}\nclient_secret=${client_secret}\nrefresh_token=${refresh_token}\nsecret_key=${secret_key}\ntmdb_api_key=${tmdb_api_key}\ntoken_expiry=`;
-      this.form.configBox = config;
       this.updateAllCacheValues();
     },
     async returnOneLineConfig() {
-      this.updateAllCacheValues();
+      let config = {};
+      config.access_token = this.form.access_token;
+      config.account_list = this.form.account_list;
+      config.category_list = this.form.category_list;
+      config.client_id = this.form.client_id;
+      config.client_secret = this.form.client_secret;
+      config.cloudflare = this.form.cloudflare;
+      config.refresh_token = this.form.refresh_token;
+      config.secret_key = this.form.secret_key;
+      config.tmdb_api_key = this.form.tmdb_api_key;
+      config.token_expiry = "";
+      this.form.configBox =  JSON.stringify(config);
 
-      let newConfig = configBox.replaceAll("\n", "\\n");
-      this.form.configBox = newConfig;
+      this.updateAllCacheValues();
     },
     async downloadToFile() {
       const a = document.createElement("a");
       const file = new Blob([this.form.configBox], { type: 'text/plain' });
 
       a.href = URL.createObjectURL(file);
-      a.download = 'config.env';
+      a.download = 'config.json';
       a.click();
 
       URL.revokeObjectURL(a.href);
@@ -764,27 +788,19 @@ export default {
     async handleFileChange(e) {
       console.log(this.form);
       var files = e.target.files || e.dataTransfer.files;
-      var form = {};
       if (!files.length)
         return;
       let reader = new FileReader();
       reader.readAsText(files[0]);
       reader.onload = () => {
         var lines = reader.result;
+        var config = JSON.parse(lines);
+        let newConfig = {};
         this.form.configBox = lines;
-        lines = lines.split("\n");
-        for (const i in lines) {
-          if (lines[i].includes("=")) {
-            var line = lines[i].split("=");
-            if (line[0] == "account_list") {
-              line[1] = JSON.parse(line[1]);
-            } else if (line[0] == "category_list") {
-              line[1] = JSON.parse(line[1]);
-            }
-            eval("form." + line[0] + "= line[1]");
-          }
-        this.form = { ...this.form, ...form }; 
+        for (var key in config) {
+          eval("newConfig." + key + "= config." + key);
         }
+        this.form = { ...this.form, ...newConfig };
       };
       reader.onerror = () => {
         return;
