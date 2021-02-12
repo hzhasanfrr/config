@@ -336,7 +336,7 @@
                   >Select the media library's type</b-dropdown-item
                 >
                 <b-dropdown-item
-                  v-for="option in ['Movies', 'TV Shows', 'Other']"
+                  v-for="option in ['Movies', 'TV Shows']"
                   :key="option"
                   :value="option"
                   @click="form.category_list[index].type = option"
