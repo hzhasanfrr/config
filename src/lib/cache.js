@@ -34,6 +34,13 @@ module.exports = {
     window.sessionStorage.setItem("cloudflare", value);
   },
 
+  get build_interval() {
+    return parseInt(window.sessionStorage.getItem("build_interval")) || 120;
+  },
+  set build_interval(value) {
+    window.sessionStorage.setItem("build_interval", toString(value));
+  },
+
   get scope() {
     return window.sessionStorage.getItem("scope") || "";
   },

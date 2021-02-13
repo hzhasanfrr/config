@@ -7,6 +7,9 @@
       >, the Google Drive media library
     </p>
     <p>
+      Check out the <code><a href="https://github.com/libDrive/libDrive/wiki">config glossary</a></code> for help!
+    </p>
+    <p>
       You must add the <code>Redirect URI</code> to your Developer Console web
       client credentials
     </p>
@@ -463,6 +466,23 @@
           </b-input-group>
         </b-form-group>
       </b-col>
+      <b-col lg="6">
+        <b-form-group
+          id="build-interval-group"
+          label="Build Interval"
+          label-for="build-interval-input"
+        >
+          <b-input-group>
+            <b-form-input
+              id="build-interval-input"
+              v-model="form.build_interval"
+              type="number"
+              required
+              :state="form.build_interval > 0 ? null : false"
+            ></b-form-input>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
     </b-row>
 
     <b-row v-if="isGenerate">
@@ -598,6 +618,7 @@ export default {
         secret_key: cache.secret_key,
         tmdb_api_key: cache.tmdb_api_key,
         cloudflare: cache.cloudflare,
+        build_interval: cache.build_interval,
 
         configBox: cache.configBox,
       },
@@ -744,6 +765,7 @@ export default {
       let config = {};
       config.access_token = this.form.access_token;
       config.account_list = this.form.account_list;
+      config.build_interval = parseInt(this.form.build_interval);
       config.category_list = this.form.category_list;
       config.client_id = this.form.client_id;
       config.client_secret = this.form.client_secret;
@@ -760,6 +782,7 @@ export default {
       let config = {};
       config.access_token = this.form.access_token;
       config.account_list = this.form.account_list;
+      config.build_interval = parseInt(this.form.build_interval);
       config.category_list = this.form.category_list;
       config.client_id = this.form.client_id;
       config.client_secret = this.form.client_secret;
