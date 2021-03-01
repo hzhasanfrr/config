@@ -7,7 +7,13 @@
       >, the Google Drive media library
     </p>
     <p>
-      Check out the <code><a href="https://github.com/libDrive/libDrive/wiki">config glossary</a></code> for help!
+      Check out the
+      <code
+        ><a href="https://github.com/libDrive/libDrive/wiki"
+          >config glossary</a
+        ></code
+      >
+      for help!
     </p>
     <p>
       You must add the <code>Redirect URI</code> to your Developer Console web
@@ -215,7 +221,9 @@
                 :disabled="true"
               ></b-form-input>
               <b-input-group-append>
-                <b-button variant="primary" v-clipboard:copy="form.refresh_token"
+                <b-button
+                  variant="primary"
+                  v-clipboard:copy="form.refresh_token"
                   >Copy</b-button
                 >
               </b-input-group-append>
@@ -485,6 +493,35 @@
       </b-col>
     </b-row>
 
+    <b-row v-if="isExtras">
+      <b-col lg="6">
+        <b-form-group
+          id="transcoded-group"
+          label="Transcoded"
+          label-for="transcoded-input"
+        >
+          <b-dropdown
+            variant="primary"
+            :text="form.transcoded"
+            id="transcoded-input"
+            v-model="form.transcoded"
+          >
+            <b-dropdown-item disabled value="False"
+              >Select the media library's type</b-dropdown-item
+            >
+            <b-dropdown-item
+              v-for="option in ['True', 'False']"
+              :key="option"
+              :value="option"
+              @click="form.transcoded = option"
+            >
+              {{ option }}
+            </b-dropdown-item>
+          </b-dropdown>
+        </b-form-group>
+      </b-col>
+    </b-row>
+
     <b-row v-if="isGenerate">
       <b-form-textarea
         id="textarea"
@@ -505,19 +542,11 @@
         One Liner
         <b-spinner small v-if="workflow.showSpinner" />
       </b-button>
-      <b-button
-        variant="primary"
-        class="mr-2"
-        @click="downloadToFile"
-      >
+      <b-button variant="primary" class="mr-2" @click="downloadToFile">
         Download
         <b-spinner small v-if="workflow.showSpinner" />
       </b-button>
-      <b-button
-        variant="primary"
-        class="mr-2"
-        @click="importFromFile"
-      >
+      <b-button variant="primary" class="mr-2" @click="importFromFile">
         Import
         <b-spinner small v-if="workflow.showSpinner" />
       </b-button>
@@ -529,7 +558,13 @@
         Copy
         <b-spinner small v-if="workflow.showSpinner" />
       </b-button>
-      <input id="file-input" type="file" accept=".json" style="display: none;" @change="handleFileChange">
+      <input
+        id="file-input"
+        type="file"
+        accept=".json"
+        style="display: none"
+        @change="handleFileChange"
+      />
     </b-row>
 
     <hr />
@@ -619,6 +654,7 @@ export default {
         tmdb_api_key: cache.tmdb_api_key,
         cloudflare: cache.cloudflare,
         build_interval: cache.build_interval,
+        transcoded: cache.transcoded,
 
         configBox: cache.configBox,
       },
@@ -774,7 +810,9 @@ export default {
       config.secret_key = this.form.secret_key;
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
-      this.form.configBox =  JSON.stringify(config, null, 4);
+      config.transcoded =
+        this.form.transcoded.toLowerCase() === "true" || false;
+      this.form.configBox = JSON.stringify(config, null, 4);
 
       this.updateAllCacheValues();
     },
@@ -791,28 +829,29 @@ export default {
       config.secret_key = this.form.secret_key;
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
-      this.form.configBox =  JSON.stringify(config);
+      config.transcoded =
+        this.form.transcoded.toLowerCase() === "true" || false;
+      this.form.configBox = JSON.stringify(config);
 
       this.updateAllCacheValues();
     },
     async downloadToFile() {
       const a = document.createElement("a");
-      const file = new Blob([this.form.configBox], { type: 'text/plain' });
+      const file = new Blob([this.form.configBox], { type: "text/plain" });
 
       a.href = URL.createObjectURL(file);
-      a.download = 'config.json';
+      a.download = "config.json";
       a.click();
 
       URL.revokeObjectURL(a.href);
     },
     async importFromFile() {
-      document.getElementById('file-input').click();
+      document.getElementById("file-input").click();
     },
     async handleFileChange(e) {
       console.log(this.form);
       var files = e.target.files || e.dataTransfer.files;
-      if (!files.length)
-        return;
+      if (!files.length) return;
       let reader = new FileReader();
       reader.readAsText(files[0]);
       reader.onload = () => {

@@ -41,6 +41,13 @@ module.exports = {
     window.sessionStorage.setItem("build_interval", toString(value));
   },
 
+  get transcoded() {
+    return window.sessionStorage.getItem("transcoded") || "False";
+  },
+  set transcoded(value) {
+    window.sessionStorage.setItem("transcoded", value);
+  },
+
   get scope() {
     return window.sessionStorage.getItem("scope") || "";
   },
