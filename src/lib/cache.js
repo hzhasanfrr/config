@@ -48,6 +48,20 @@ module.exports = {
     window.sessionStorage.setItem("transcoded", value);
   },
 
+  get signup() {
+    return window.sessionStorage.getItem("signup") || "False";
+  },
+  set signup(value) {
+    window.sessionStorage.setItem("signup", value);
+  },
+
+  get auth() {
+    return window.sessionStorage.getItem("auth") || "True";
+  },
+  set auth(value) {
+    window.sessionStorage.setItem("auth", value);
+  },
+
   get scope() {
     return window.sessionStorage.getItem("scope") || "";
   },

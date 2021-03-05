@@ -507,13 +507,68 @@
             v-model="form.transcoded"
           >
             <b-dropdown-item disabled value="False"
-              >Select the media library's type</b-dropdown-item
+              >Select whether pre-transcoded videos should be used</b-dropdown-item
             >
             <b-dropdown-item
               v-for="option in ['True', 'False']"
               :key="option"
               :value="option"
               @click="form.transcoded = option"
+            >
+              {{ option }}
+            </b-dropdown-item>
+          </b-dropdown>
+        </b-form-group>
+      </b-col>
+      <b-col lg="6">
+        <b-form-group
+          id="signup-group"
+          label="Sign Up"
+          label-for="signup-input"
+        >
+          <b-dropdown
+            variant="primary"
+            :text="form.signup"
+            id="signup-input"
+            v-model="form.signup"
+          >
+            <b-dropdown-item disabled value="False"
+              >Select whether user sign up should be enabled</b-dropdown-item
+            >
+            <b-dropdown-item
+              v-for="option in ['True', 'False']"
+              :key="option"
+              :value="option"
+              @click="form.signup = option"
+            >
+              {{ option }}
+            </b-dropdown-item>
+          </b-dropdown>
+        </b-form-group>
+      </b-col>
+    </b-row>
+
+    <b-row v-if="isExtras">
+      <b-col lg="6">
+        <b-form-group
+          id="auth-group"
+          label="Authentication"
+          label-for="auth-input"
+        >
+          <b-dropdown
+            variant="primary"
+            :text="form.auth"
+            id="auth-input"
+            v-model="form.auth"
+          >
+            <b-dropdown-item disabled value="False"
+              >Select whether authentication should be enabled</b-dropdown-item
+            >
+            <b-dropdown-item
+              v-for="option in ['True', 'False']"
+              :key="option"
+              :value="option"
+              @click="form.auth = option"
             >
               {{ option }}
             </b-dropdown-item>
@@ -655,6 +710,8 @@ export default {
         cloudflare: cache.cloudflare,
         build_interval: cache.build_interval,
         transcoded: cache.transcoded,
+        signup: cache.signup,
+        auth: cache.auth,
 
         configBox: cache.configBox,
       },
@@ -812,6 +869,10 @@ export default {
       config.token_expiry = "";
       config.transcoded =
         this.form.transcoded.toLowerCase() === "true" || false;
+      config.signup =
+        this.form.signup.toLowerCase() === "true" || false;
+      config.auth =
+        this.form.auth.toLowerCase() === "true" || false;
       this.form.configBox = JSON.stringify(config, null, 4);
 
       this.updateAllCacheValues();
@@ -831,6 +892,10 @@ export default {
       config.token_expiry = "";
       config.transcoded =
         this.form.transcoded.toLowerCase() === "true" || false;
+      config.signup =
+        this.form.signup.toLowerCase() === "true" || false;
+      config.auth =
+        this.form.auth.toLowerCase() === "true" || false;
       this.form.configBox = JSON.stringify(config);
 
       this.updateAllCacheValues();
