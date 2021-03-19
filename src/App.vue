@@ -389,23 +389,6 @@
               ></b-form-input>
             </b-form-group>
           </b-col>
-          <b-col lg="6">
-            <b-form-group
-              id="category-driveid-group"
-              label="Drive ID"
-              label-for="category-driveid-input"
-            >
-              <b-form-input
-                id="category-driveid-input"
-                v-model="form.category_list[index].driveId"
-                type="text"
-                required
-                :state="
-                  form.category_list[index].driveId.length > 0 ? null : false
-                "
-              ></b-form-input>
-            </b-form-group>
-          </b-col>
         </b-row>
       </div>
     </div>
@@ -507,7 +490,8 @@
             v-model="form.transcoded"
           >
             <b-dropdown-item disabled value="False"
-              >Select whether pre-transcoded videos should be used</b-dropdown-item
+              >Select whether pre-transcoded videos should be
+              used</b-dropdown-item
             >
             <b-dropdown-item
               v-for="option in ['True', 'False']"
@@ -846,7 +830,6 @@ export default {
         type: "",
         name: "",
         id: "",
-        driveId: "",
       });
     },
     async removeCategories() {
@@ -869,10 +852,8 @@ export default {
       config.token_expiry = "";
       config.transcoded =
         this.form.transcoded.toLowerCase() === "true" || false;
-      config.signup =
-        this.form.signup.toLowerCase() === "true" || false;
-      config.auth =
-        this.form.auth.toLowerCase() === "true" || false;
+      config.signup = this.form.signup.toLowerCase() === "true" || false;
+      config.auth = this.form.auth.toLowerCase() === "true" || false;
       this.form.configBox = JSON.stringify(config, null, 4);
 
       this.updateAllCacheValues();
@@ -892,10 +873,8 @@ export default {
       config.token_expiry = "";
       config.transcoded =
         this.form.transcoded.toLowerCase() === "true" || false;
-      config.signup =
-        this.form.signup.toLowerCase() === "true" || false;
-      config.auth =
-        this.form.auth.toLowerCase() === "true" || false;
+      config.signup = this.form.signup.toLowerCase() === "true" || false;
+      config.auth = this.form.auth.toLowerCase() === "true" || false;
       this.form.configBox = JSON.stringify(config);
 
       this.updateAllCacheValues();
