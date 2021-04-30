@@ -479,6 +479,24 @@
     <b-row v-if="isExtras">
       <b-col lg="6">
         <b-form-group
+          id="arcio-group"
+          label="Arc.io"
+          label-for="arcio-input"
+        >
+          <b-input-group>
+            <b-form-input
+              id="arcio-input"
+              v-model="form.arcio"
+              type="text"
+            ></b-form-input>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+    </b-row>
+
+    <b-row v-if="isExtras">
+      <b-col lg="3">
+        <b-form-group
           id="transcoded-group"
           label="Transcoded"
           label-for="transcoded-input"
@@ -504,7 +522,7 @@
           </b-dropdown>
         </b-form-group>
       </b-col>
-      <b-col lg="6">
+      <b-col lg="3">
         <b-form-group
           id="signup-group"
           label="Sign Up"
@@ -530,10 +548,7 @@
           </b-dropdown>
         </b-form-group>
       </b-col>
-    </b-row>
-
-    <b-row v-if="isExtras">
-      <b-col lg="6">
+      <b-col lg="3">
         <b-form-group
           id="auth-group"
           label="Authentication"
@@ -553,6 +568,32 @@
               :key="option"
               :value="option"
               @click="form.auth = option"
+            >
+              {{ option }}
+            </b-dropdown-item>
+          </b-dropdown>
+        </b-form-group>
+      </b-col>
+      <b-col lg="3">
+        <b-form-group
+          id="build-type-group"
+          label="Build Type"
+          label-for="build-type-input"
+        >
+          <b-dropdown
+            variant="primary"
+            :text="form.build_type"
+            id="build-type-input"
+            v-model="form.build_type"
+          >
+            <b-dropdown-item disabled value="hybrid"
+              >Select which type of metadata build to use</b-dropdown-item
+            >
+            <b-dropdown-item
+              v-for="option in ['hybrid', 'full']"
+              :key="option"
+              :value="option"
+              @click="form.build_type = option"
             >
               {{ option }}
             </b-dropdown-item>
@@ -693,6 +734,8 @@ export default {
         tmdb_api_key: cache.tmdb_api_key,
         cloudflare: cache.cloudflare,
         build_interval: cache.build_interval,
+        build_type: cache.build_type,
+        arcio: cache.arcio,
         transcoded: cache.transcoded,
         signup: cache.signup,
         auth: cache.auth,
@@ -841,7 +884,10 @@ export default {
       let config = {};
       config.access_token = this.form.access_token;
       config.account_list = this.form.account_list;
+      config.arcio = this.form.arcio;
+      config.auth = this.form.auth.toLowerCase() === "true" || false;
       config.build_interval = parseInt(this.form.build_interval);
+      config.build_type = config.build_interval;
       config.category_list = this.form.category_list;
       config.client_id = this.form.client_id;
       config.client_secret = this.form.client_secret;
@@ -851,9 +897,8 @@ export default {
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
       config.transcoded =
-        this.form.transcoded.toLowerCase() === "true" || false;
+        this.form.transcoded.toLowerCase() == "true" || false;
       config.signup = this.form.signup.toLowerCase() === "true" || false;
-      config.auth = this.form.auth.toLowerCase() === "true" || false;
       this.form.configBox = JSON.stringify(config, null, 4);
 
       this.updateAllCacheValues();
@@ -862,7 +907,10 @@ export default {
       let config = {};
       config.access_token = this.form.access_token;
       config.account_list = this.form.account_list;
+      config.arcio = this.form.arcio;
+      config.auth = this.form.auth.toLowerCase() === "true" || false;
       config.build_interval = parseInt(this.form.build_interval);
+      config.arcio = this.form.build_type;
       config.category_list = this.form.category_list;
       config.client_id = this.form.client_id;
       config.client_secret = this.form.client_secret;
@@ -872,9 +920,8 @@ export default {
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
       config.transcoded =
-        this.form.transcoded.toLowerCase() === "true" || false;
+        this.form.transcoded.toLowerCase() == "true" || false;
       config.signup = this.form.signup.toLowerCase() === "true" || false;
-      config.auth = this.form.auth.toLowerCase() === "true" || false;
       this.form.configBox = JSON.stringify(config);
 
       this.updateAllCacheValues();

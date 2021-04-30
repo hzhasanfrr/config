@@ -13,6 +13,20 @@ module.exports = {
     window.sessionStorage.setItem("tokenEndpoint", value);
   },
 
+  get auth() {
+    return window.sessionStorage.getItem("auth") || "True";
+  },
+  set auth(value) {
+    window.sessionStorage.setItem("auth", value);
+  },
+
+  get arcio() {
+    return window.sessionStorage.getItem("arcio") || null;
+  },
+  set arcio(value) {
+    window.sessionStorage.setItem("arcio", value);
+  },
+
   get client_id() {
     return window.sessionStorage.getItem("client_id") || "";
   },
@@ -41,6 +55,13 @@ module.exports = {
     window.sessionStorage.setItem("build_interval", toString(value));
   },
 
+  get build_type() {
+    return window.sessionStorage.getItem("build_type") || "hybrid";
+  },
+  set build_type(value) {
+    window.sessionStorage.setItem("build_type", value);
+  },
+
   get transcoded() {
     return window.sessionStorage.getItem("transcoded") || "False";
   },
@@ -53,13 +74,6 @@ module.exports = {
   },
   set signup(value) {
     window.sessionStorage.setItem("signup", value);
-  },
-
-  get auth() {
-    return window.sessionStorage.getItem("auth") || "True";
-  },
-  set auth(value) {
-    window.sessionStorage.setItem("auth", value);
   },
 
   get scope() {
