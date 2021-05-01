@@ -887,7 +887,7 @@ export default {
       config.arcio = this.form.arcio;
       config.auth = this.form.auth.toLowerCase() === "true" || false;
       config.build_interval = parseInt(this.form.build_interval);
-      config.build_type = config.build_interval;
+      config.build_type = this.form.build_type;
       config.category_list = this.form.category_list;
       config.client_id = this.form.client_id;
       config.client_secret = this.form.client_secret;
@@ -910,7 +910,7 @@ export default {
       config.arcio = this.form.arcio;
       config.auth = this.form.auth.toLowerCase() === "true" || false;
       config.build_interval = parseInt(this.form.build_interval);
-      config.arcio = this.form.build_type;
+      config.build_type = this.form.build_type;
       config.category_list = this.form.category_list;
       config.client_id = this.form.client_id;
       config.client_secret = this.form.client_secret;
