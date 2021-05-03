@@ -1,17 +1,10 @@
 {
   "name": "libdrive-config",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": false,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "cd": "yarn run test && yarn run build",
-    "test:unit": "vue-cli-service test:unit",
-    "test:unit:debug": "vue-cli-service test:unit --inspect-brk --watch",
-    "lint": "vue-cli-service lint",
-    "start": "http-server dist/ -o -S -C node_modules/openssl-self-signed-certificate/cert.pem -K node_modules/openssl-self-signed-certificate/key.pem",
-    "test": "yarn run test:unit",
-    "posttest": "yarn run lint"
+    "start": "vue-cli-service serve",
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "bootstrap-vue": "^2.20.1",
@@ -23,60 +16,14 @@
   },
   "devDependencies": {
     "@babel/polyfill": "^7.12.1",
-    "@vue/cli-plugin-babel": "^4.5.9",
-    "@vue/cli-plugin-eslint": "^4.5.9",
-    "@vue/cli-plugin-unit-mocha": "^4.5.9",
     "@vue/cli-service": "^4.5.9",
-    "@vue/test-utils": "1.1.1",
-    "babel-eslint": "^10.1.0",
     "bootstrap": "^4.5.3",
-    "chai": "^4.2.0",
-    "eslint": "^7.14.0",
-    "eslint-plugin-vue": "^7.1.0",
     "http-server": "^0.12.3",
     "mutationobserver-shim": "^0.3.7",
-    "node-sass": "^5.0.0",
-    "openssl-self-signed-certificate": "^1.1.6",
     "popper.js": "^1.16.1",
     "portal-vue": "^2.1.7",
-    "sass-loader": "^10.1.0",
     "vue-cli-plugin-bootstrap-vue": "^0.7.0",
     "vue-template-compiler": "^2.6.12"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {
-      "semi": [
-        "warn",
-        "always"
-      ]
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/__tests__/*.{j,t}s?(x)",
-          "**/tests/unit/**/*.spec.{j,t}s?(x)"
-        ],
-        "env": {
-          "mocha": true
-        }
-      }
-    ]
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
   },
   "browserslist": [
     "> 1%",
