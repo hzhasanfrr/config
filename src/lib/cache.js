@@ -21,7 +21,7 @@ module.exports = {
   },
 
   get arcio() {
-    return window.sessionStorage.getItem("arcio") || null;
+    return window.sessionStorage.getItem("arcio") || "dev";
   },
   set arcio(value) {
     window.sessionStorage.setItem("arcio", value);
