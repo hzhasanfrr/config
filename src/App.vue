@@ -313,9 +313,8 @@
       </div>
     </div>
 
-    <br />
-
     <b-row v-if="isAccounts">
+      <br />
       <b-button variant="primary" class="ml-3" @click="appendAccounts">
         Add Account
         <b-spinner small v-if="workflow.showSpinner" />
@@ -395,9 +394,8 @@
       </div>
     </div>
 
-    <br />
-
     <b-row v-if="isCategories">
+      <br />
       <b-button variant="primary" class="ml-3" @click="appendCategories">
         Add Category
         <b-spinner small v-if="workflow.showSpinner" />
@@ -611,9 +609,8 @@
       ></b-form-textarea>
     </b-row>
 
-    <br />
-
     <b-row v-if="isGenerate">
+      <br />
       <b-button variant="primary" class="mr-2" @click="returnConfig">
         Generate Config
         <b-spinner small v-if="workflow.showSpinner" />
