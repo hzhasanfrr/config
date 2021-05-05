@@ -313,6 +313,8 @@
       </div>
     </div>
 
+    <br />
+
     <b-row v-if="isAccounts">
       <b-button variant="primary" class="ml-3" @click="appendAccounts">
         Add Account
@@ -331,7 +333,39 @@
       >
         <b-card-title :title="'Category ' + index"></b-card-title>
         <b-row>
-          <b-col lg="6">
+          <b-col lg="5">
+            <b-form-group
+              id="category-name-group"
+              label="Name"
+              label-for="category-name-input"
+            >
+              <b-form-input
+                id="category-name-input"
+                v-model="form.category_list[index].name"
+                type="text"
+                required
+                :state="
+                  form.category_list[index].name.length > 0 ? null : false
+                "
+              ></b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col lg="5">
+            <b-form-group
+              id="category-id-group"
+              label="Folder ID"
+              label-for="category-id-input"
+            >
+              <b-form-input
+                id="category-id-input"
+                v-model="form.category_list[index].id"
+                type="text"
+                required
+                :state="form.category_list[index].id.length > 0 ? null : false"
+              ></b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col lg="2">
             <b-form-group
               id="category-type-group"
               label="Type"
@@ -357,41 +391,11 @@
               </b-dropdown>
             </b-form-group>
           </b-col>
-          <b-col lg="6">
-            <b-form-group
-              id="category-name-group"
-              label="Name"
-              label-for="category-name-input"
-            >
-              <b-form-input
-                id="category-name-input"
-                v-model="form.category_list[index].name"
-                type="text"
-                required
-                :state="
-                  form.category_list[index].name.length > 0 ? null : false
-                "
-              ></b-form-input>
-            </b-form-group>
-          </b-col>
-          <b-col lg="6">
-            <b-form-group
-              id="category-id-group"
-              label="Folder ID"
-              label-for="category-id-input"
-            >
-              <b-form-input
-                id="category-id-input"
-                v-model="form.category_list[index].id"
-                type="text"
-                required
-                :state="form.category_list[index].id.length > 0 ? null : false"
-              ></b-form-input>
-            </b-form-group>
-          </b-col>
         </b-row>
       </div>
     </div>
+
+    <br />
 
     <b-row v-if="isCategories">
       <b-button variant="primary" class="ml-3" @click="appendCategories">
@@ -440,9 +444,8 @@
         </b-form-group>
       </b-col>
     </b-row>
-
     <b-row v-if="isExtras">
-      <b-col lg="6">
+      <b-col lg="5">
         <b-form-group
           id="cloudflare-group"
           label="Cloudflare"
@@ -457,7 +460,22 @@
           </b-input-group>
         </b-form-group>
       </b-col>
-      <b-col lg="6">
+      <b-col lg="5">
+        <b-form-group
+          id="arcio-group"
+          label="Arc.io"
+          label-for="arcio-input"
+        >
+          <b-input-group>
+            <b-form-input
+              id="arcio-input"
+              v-model="form.arcio"
+              type="text"
+            ></b-form-input>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+      <b-col lg="2">
         <b-form-group
           id="build-interval-group"
           label="Build Interval"
@@ -477,25 +495,7 @@
     </b-row>
 
     <b-row v-if="isExtras">
-      <b-col lg="6">
-        <b-form-group
-          id="arcio-group"
-          label="Arc.io"
-          label-for="arcio-input"
-        >
-          <b-input-group>
-            <b-form-input
-              id="arcio-input"
-              v-model="form.arcio"
-              type="text"
-            ></b-form-input>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
-    </b-row>
-
-    <b-row v-if="isExtras">
-      <b-col lg="3">
+      <b-col lg="2">
         <b-form-group
           id="transcoded-group"
           label="Transcoded"
@@ -522,7 +522,7 @@
           </b-dropdown>
         </b-form-group>
       </b-col>
-      <b-col lg="3">
+      <b-col lg="2">
         <b-form-group
           id="signup-group"
           label="Sign Up"
@@ -548,7 +548,7 @@
           </b-dropdown>
         </b-form-group>
       </b-col>
-      <b-col lg="3">
+      <b-col lg="2">
         <b-form-group
           id="auth-group"
           label="Authentication"
@@ -574,7 +574,7 @@
           </b-dropdown>
         </b-form-group>
       </b-col>
-      <b-col lg="3">
+      <b-col lg="2">
         <b-form-group
           id="build-type-group"
           label="Build Type"
@@ -607,7 +607,7 @@
         id="textarea"
         v-model="form.configBox"
         placeholder=""
-        rows="10"
+        rows="25"
       ></b-form-textarea>
     </b-row>
 
@@ -896,8 +896,7 @@ export default {
       config.secret_key = this.form.secret_key;
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
-      config.transcoded =
-        this.form.transcoded.toLowerCase() == "true" || false;
+      config.transcoded = this.form.transcoded.toLowerCase() == "true" || false;
       config.signup = this.form.signup.toLowerCase() === "true" || false;
       this.form.configBox = JSON.stringify(config, null, 4);
 
@@ -919,8 +918,7 @@ export default {
       config.secret_key = this.form.secret_key;
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
-      config.transcoded =
-        this.form.transcoded.toLowerCase() == "true" || false;
+      config.transcoded = this.form.transcoded.toLowerCase() == "true" || false;
       config.signup = this.form.signup.toLowerCase() === "true" || false;
       this.form.configBox = JSON.stringify(config);
 
