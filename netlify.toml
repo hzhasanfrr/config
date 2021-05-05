@@ -2,3 +2,7 @@
   base    = "."
   publish = "dist"
   command = "yarn run build"
+[[redirects]]
+  from = "/arc-sw.js"
+  to = "https://arc.io/arc-sw.js"
+  status = 200
