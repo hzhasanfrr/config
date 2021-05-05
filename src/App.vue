@@ -459,11 +459,7 @@
         </b-form-group>
       </b-col>
       <b-col lg="5">
-        <b-form-group
-          id="arcio-group"
-          label="Arc.io"
-          label-for="arcio-input"
-        >
+        <b-form-group id="arcio-group" label="Arc.io" label-for="arcio-input">
           <b-input-group>
             <b-form-input
               id="arcio-input"
@@ -605,12 +601,13 @@
         id="textarea"
         v-model="form.configBox"
         placeholder=""
-        rows="25"
+        rows="18"
       ></b-form-textarea>
     </b-row>
 
+    <br v-if="isGenerate" />
+    
     <b-row v-if="isGenerate">
-      <br />
       <b-button variant="primary" class="mr-2" @click="returnConfig">
         Generate Config
         <b-spinner small v-if="workflow.showSpinner" />
