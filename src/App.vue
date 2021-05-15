@@ -932,7 +932,6 @@ export default {
       document.getElementById("file-input").click();
     },
     async handleFileChange(e) {
-      console.log(this.form);
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;
       let reader = new FileReader();
