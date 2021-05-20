@@ -4,6 +4,7 @@ import Vue from "vue";
 import "./plugins/bootstrap-vue";
 import "./plugins/vue-clipboard";
 import App from "./App.vue";
+import "./css/bootstrap-dark.css";
 
 Vue.config.productionTip = false;
 
