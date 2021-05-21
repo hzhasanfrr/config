@@ -1,7 +1,7 @@
 {
   "name": "libdrive-config",
   "version": "1.1.0",
-  "private": false,
+  "description": "libDrive is a Google Drive media library manager and indexer, similar to Plex, that organizes Google Drive media to offer an intuitive and user-friendly experience.",
   "scripts": {
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build"
@@ -24,6 +24,21 @@
     "portal-vue": "^2.1.7",
     "vue-cli-plugin-bootstrap-vue": "^0.7.0",
     "vue-template-compiler": "^2.6.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/libDrive/config.git"
+  },
+  "author": "Elias Benbourenane <eliasbenbourenane@gmail.com> (https://eliasbenb.cf)",
+  "funding": [
+    {
+      "type": "ko-fi",
+      "url": "https://ko-fi.com/eliasbenb"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/libDrive/libDrive/issues"
   },
   "browserslist": [
     "> 1%",
