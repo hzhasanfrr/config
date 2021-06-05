@@ -332,7 +332,7 @@
       >
         <b-card-title :title="'Category ' + index"></b-card-title>
         <b-row>
-          <b-col lg="5">
+          <b-col lg="4">
             <b-form-group
               id="category-name-group"
               label="Name"
@@ -349,7 +349,7 @@
               ></b-form-input>
             </b-form-group>
           </b-col>
-          <b-col lg="5">
+          <b-col lg="4">
             <b-form-group
               id="category-id-group"
               label="Folder ID"
@@ -361,6 +361,19 @@
                 type="text"
                 required
                 :state="form.category_list[index].id.length > 0 ? null : false"
+              ></b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col lg="2">
+            <b-form-group
+              id="category-language-group"
+              label="Folder Language"
+              label-for="category-language-input"
+            >
+              <b-form-input
+                id="category-id-input"
+                v-model="form.category_list[index].language"
+                type="text"
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -518,6 +531,32 @@
       </b-col>
       <b-col lg="2">
         <b-form-group
+          id="subtitles-group"
+          label="Subtitles"
+          label-for="subtitles-input"
+        >
+          <b-dropdown
+            variant="primary"
+            :text="form.subtitles"
+            id="subtitles-input"
+            v-model="form.subtitles"
+          >
+            <b-dropdown-item disabled value="False"
+              >Select whether subtitles should be scanned from Google Drive folders</b-dropdown-item
+            >
+            <b-dropdown-item
+              v-for="option in ['True', 'False']"
+              :key="option"
+              :value="option"
+              @click="form.subtitles = option"
+            >
+              {{ option }}
+            </b-dropdown-item>
+          </b-dropdown>
+        </b-form-group>
+      </b-col>
+      <b-col lg="2">
+        <b-form-group
           id="signup-group"
           label="Sign Up"
           label-for="signup-input"
@@ -600,6 +639,7 @@
       <b-form-textarea
         id="textarea"
         v-model="form.configBox"
+        spellcheck="false"
         placeholder=""
         rows="18"
       ></b-form-textarea>
@@ -732,6 +772,7 @@ export default {
         arcio: cache.arcio,
         transcoded: cache.transcoded,
         signup: cache.signup,
+        subtitles: cache.subtitles,
         auth: cache.auth,
 
         configBox: cache.configBox,
@@ -867,6 +908,7 @@ export default {
         type: "",
         name: "",
         id: "",
+        language: "en",
       });
     },
     async removeCategories() {
@@ -891,6 +933,7 @@ export default {
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
       config.transcoded = this.form.transcoded.toLowerCase() == "true" || false;
+      config.subtitles = this.form.subtitles.toLowerCase() == "true" || false;
       config.signup = this.form.signup.toLowerCase() === "true" || false;
       this.form.configBox = JSON.stringify(config, null, 4);
 
@@ -913,6 +956,7 @@ export default {
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
       config.transcoded = this.form.transcoded.toLowerCase() == "true" || false;
+      config.subtitles = this.form.subtitles.toLowerCase() == "true" || false;
       config.signup = this.form.signup.toLowerCase() === "true" || false;
       this.form.configBox = JSON.stringify(config);
 

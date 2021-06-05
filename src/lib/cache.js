@@ -76,6 +76,13 @@ module.exports = {
     window.sessionStorage.setItem("signup", value);
   },
 
+  get subtitles() {
+    return window.sessionStorage.getItem("subtitles") || "False";
+  },
+  set subtitles(value) {
+    window.sessionStorage.setItem("subtitles", value);
+  },
+
   get scope() {
     return window.sessionStorage.getItem("scope") || "";
   },
