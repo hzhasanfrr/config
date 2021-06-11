@@ -139,6 +139,13 @@ module.exports = {
     window.sessionStorage.setItem("category_list", JSON.stringify(value));
   },
 
+  set service_accounts(value) {
+    window.sessionStorage.setItem("service_accounts", JSON.stringify(value));
+  },
+  get service_accounts() {
+    return JSON.parse(window.sessionStorage.getItem("service_accounts")) || [];
+  },
+
   get secret_key() {
     return window.sessionStorage.getItem("secret_key") || "";
   },

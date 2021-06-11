@@ -542,7 +542,8 @@
             v-model="form.subtitles"
           >
             <b-dropdown-item disabled value="False"
-              >Select whether subtitles should be scanned from Google Drive folders</b-dropdown-item
+              >Select whether subtitles should be scanned from Google Drive
+              folders</b-dropdown-item
             >
             <b-dropdown-item
               v-for="option in ['True', 'False']"
@@ -633,6 +634,15 @@
           </b-dropdown>
         </b-form-group>
       </b-col>
+      <b-col lg="2">
+        <b-form-group id="service-accounts-group" label="Service Accounts">
+          <b-form-file
+            ref="file-input"
+            id="service-accounts-input"
+            @change="sa_zip_file"
+          ></b-form-file>
+        </b-form-group>
+      </b-col>
     </b-row>
 
     <b-row v-if="isGenerate">
@@ -646,7 +656,7 @@
     </b-row>
 
     <br v-if="isGenerate" />
-    
+
     <b-row v-if="isGenerate">
       <b-button variant="primary" class="mr-2" @click="returnConfig">
         Generate Config
@@ -699,6 +709,7 @@
 <script>
 import rand from "csprng";
 import cache from "./lib/cache";
+import JSZip from "jszip";
 import {
   GOOGLE,
   ACCOUNTS,
@@ -771,6 +782,7 @@ export default {
         build_type: cache.build_type,
         arcio: cache.arcio,
         transcoded: cache.transcoded,
+        service_accounts: cache.service_accounts,
         signup: cache.signup,
         subtitles: cache.subtitles,
         auth: cache.auth,
@@ -785,8 +797,22 @@ export default {
     };
   },
   methods: {
+    async sa_zip_file(e) {
+      var sa_files = [];
+      await JSZip.loadAsync(e.target.files[0]).then((zip) => {
+        zip.forEach((path, file) => {
+          file.async("string").then((fileData) => {
+            if (!(fileData == null || fileData == "")) {
+              sa_files.push(JSON.parse(fileData));
+            }
+          });
+        });
+      });
+      this.form.service_accounts = sa_files;
+    },
     getAuthCode() {
       this.updateAllCacheValues();
+
       let query = objToFormEncoded({
         response_type: "code",
         redirect_uri: this.form.redirectUri,
@@ -933,6 +959,7 @@ export default {
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
       config.transcoded = this.form.transcoded.toLowerCase() == "true" || false;
+      config.service_accounts = this.form.service_accounts;
       config.subtitles = this.form.subtitles.toLowerCase() == "true" || false;
       config.signup = this.form.signup.toLowerCase() === "true" || false;
       this.form.configBox = JSON.stringify(config, null, 4);
@@ -956,6 +983,7 @@ export default {
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
       config.transcoded = this.form.transcoded.toLowerCase() == "true" || false;
+      config.service_accounts = this.form.service_accounts;
       config.subtitles = this.form.subtitles.toLowerCase() == "true" || false;
       config.signup = this.form.signup.toLowerCase() === "true" || false;
       this.form.configBox = JSON.stringify(config);
@@ -1009,6 +1037,7 @@ export default {
       cache.account_list = this.form.account_list;
       cache.category_list = this.form.category_list;
       cache.secret_key = this.form.secret_key;
+      cache.service_accounts = this.form.service_accounts;
       cache.tmdb_api_key = this.form.tmdb_api_key;
       cache.configBox = this.form.configBox;
     },
