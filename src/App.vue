@@ -332,7 +332,7 @@
       >
         <b-card-title :title="'Category ' + index"></b-card-title>
         <b-row>
-          <b-col lg="4">
+          <b-col lg="6">
             <b-form-group
               id="category-name-group"
               label="Name"
@@ -349,7 +349,7 @@
               ></b-form-input>
             </b-form-group>
           </b-col>
-          <b-col lg="4">
+          <b-col lg="6">
             <b-form-group
               id="category-id-group"
               label="Folder ID"
@@ -364,7 +364,7 @@
               ></b-form-input>
             </b-form-group>
           </b-col>
-          <b-col lg="2">
+          <b-col lg="4">
             <b-form-group
               id="category-language-group"
               label="Folder Language"
@@ -377,7 +377,7 @@
               ></b-form-input>
             </b-form-group>
           </b-col>
-          <b-col lg="2">
+          <b-col lg="1.5">
             <b-form-group
               id="category-type-group"
               label="Type"
@@ -389,7 +389,7 @@
                 id="category-type-input"
                 v-model="form.category_list[index].type"
               >
-                <b-dropdown-item disabled value="0"
+                <b-dropdown-item disabled value="Movies"
                   >Select the media library's type</b-dropdown-item
                 >
                 <b-dropdown-item
@@ -397,6 +397,33 @@
                   :key="option"
                   :value="option"
                   @click="form.category_list[index].type = option"
+                >
+                  {{ option }}
+                </b-dropdown-item>
+              </b-dropdown>
+            </b-form-group>
+          </b-col>
+          <b-col lg="1">
+            <b-form-group
+              id="category-anilist-group"
+              label="Anilist"
+              label-for="category-anilist-input"
+            >
+              <b-dropdown
+                variant="primary"
+                :text="form.category_list[index].anilist.toString()"
+                id="category-anilist-input"
+                v-model="form.category_list[index].anilist"
+              >
+                <b-dropdown-item disabled value="false"
+                  >Do you want to enable anilist for this
+                  category</b-dropdown-item
+                >
+                <b-dropdown-item
+                  v-for="option in [true, false]"
+                  :key="option"
+                  :value="option"
+                  @click="form.category_list[index].anilist = option"
                 >
                   {{ option }}
                 </b-dropdown-item>
@@ -931,10 +958,11 @@ export default {
       this.updateAllCacheValues();
 
       this.form.category_list.push({
-        type: "",
+        type: "Movies",
         name: "",
         id: "",
         language: "en",
+        anilist: false,
       });
     },
     async removeCategories() {
