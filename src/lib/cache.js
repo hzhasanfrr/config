@@ -62,6 +62,20 @@ module.exports = {
     window.sessionStorage.setItem("build_type", value);
   },
 
+  get prefer_mkv() {
+    return window.sessionStorage.getItem("prefer_mkv") || "False";
+  },
+  set prefer_mkv(value) {
+    window.sessionStorage.setItem("prefer_mkv", value);
+  },
+
+  get prefer_mp4() {
+    return window.sessionStorage.getItem("prefer_mp4") || "False";
+  },
+  set prefer_mp4(value) {
+    window.sessionStorage.setItem("prefer_mp4", value);
+  },
+
   get transcoded() {
     return window.sessionStorage.getItem("transcoded") || "False";
   },
@@ -81,6 +95,17 @@ module.exports = {
   },
   set subtitles(value) {
     window.sessionStorage.setItem("subtitles", value);
+  },
+
+  get ui_config() {
+    var ui_config = JSON.parse(window.sessionStorage.getItem("ui_config")) || {};
+    if (!ui_config.range) {
+      ui_config.range = "16";
+    }
+    return ui_config;
+  },
+  set ui_config(value) {
+    window.sessionStorage.setItem("ui_config", JSON.stringify(value));
   },
 
   get scope() {

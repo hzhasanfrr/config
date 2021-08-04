@@ -39,207 +39,219 @@
         </b-col>
       </b-row>
 
-      <b-row v-if="isGoogle">
-        <b-col lg="6">
-          <b-form-group
-            id="client-id-group"
-            label="Client ID"
-            label-for="client-id-input"
-          >
-            <b-form-input
-              id="client-id-input"
-              v-model="form.client_id"
-              type="text"
-              placeholder=""
-              required
-              :state="form.client_id.length > 0 ? null : false"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-        <b-col lg="6">
-          <b-form-group
-            id="client-secret-group"
-            label="Client Secret"
-            label-for="client-secret-input"
-          >
-            <b-form-input
-              id="client-secret-input"
-              v-model="form.client_secret"
-              type="text"
-              placeholder=""
-              required
-              :state="form.client_secret.length > 0 ? null : false"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-      </b-row>
-
-      <b-row v-if="isGoogle">
-        <b-col lg="6">
-          <b-form-group
-            id="authorization-endpoint-group"
-            label="Authorization Endpoint"
-            label-for="authorization-endpoint-input"
-          >
-            <b-form-input
-              id="authorization-endpoint-input"
-              v-model="form.authEndpoint"
-              type="text"
-              :disabled="true"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-        <b-col lg="6">
-          <b-form-group
-            id="token-endpoint-group"
-            label="Token Endpoint"
-            label-for="token-endpoint-input"
-          >
-            <b-form-input
-              id="token-endpoint-input"
-              v-model="form.tokenEndpoint"
-              type="text"
-              :disabled="true"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-      </b-row>
-
-      <b-row v-if="isGoogle">
-        <b-col lg="6">
-          <b-form-group
-            id="redirect-uri-group"
-            label="Redirect URI"
-            label-for="redirect-uri-input"
-          >
-            <b-form-input
-              id="redirect-uri-input"
-              v-model="form.redirectUri"
-              type="text"
-              :disabled="true"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-        <b-col lg="6">
-          <b-form-group id="scope-group" label="Scope" label-for="scope-input">
-            <b-form-input
-              id="scope-input"
-              v-model="form.scope"
-              type="text"
-              placeholder=""
-              :disabled="true"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-      </b-row>
-
-      <b-row v-if="isGoogle">
-        <b-col lg="6">
-          <b-form-group id="state-group" label="State" label-for="state-input">
-            <b-form-input
-              id="state-input"
-              v-model="form.state"
-              type="text"
-              :disabled="true"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-        <b-col lg="6">
-          <b-form-group
-            id="custom-parameters-group"
-            label="Custom Parameters (Form-Encoded, Optional)"
-            label-for="custom-parameters-input"
-          >
-            <b-form-input
-              id="custom-parameters-input"
-              v-model="form.customParameters"
-              type="text"
-              placeholder=""
-              :disabled="true"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-      </b-row>
-
-      <b-row v-if="isGoogle">
-        <b-col>
-          <b-form-group
-            id="authorization-code-group"
-            label="Authorization Code"
-            label-for="authorization-code-input"
-          >
-            <b-input-group>
+      <div v-if="isGoogle">
+        <b-row>
+          <b-col lg="6">
+            <b-form-group
+              id="client-id-group"
+              label="Client ID"
+              label-for="client-id-input"
+            >
               <b-form-input
-                id="authorization-code-input"
-                v-model="form.authCode"
+                id="client-id-input"
+                v-model="form.client_id"
+                type="text"
+                placeholder=""
+                required
+                :state="form.client_id.length > 0 ? null : false"
+              ></b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col lg="6">
+            <b-form-group
+              id="client-secret-group"
+              label="Client Secret"
+              label-for="client-secret-input"
+            >
+              <b-form-input
+                id="client-secret-input"
+                v-model="form.client_secret"
+                type="text"
+                placeholder=""
+                required
+                :state="form.client_secret.length > 0 ? null : false"
+              ></b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col lg="6">
+            <b-form-group
+              id="authorization-endpoint-group"
+              label="Authorization Endpoint"
+              label-for="authorization-endpoint-input"
+            >
+              <b-form-input
+                id="authorization-endpoint-input"
+                v-model="form.authEndpoint"
                 type="text"
                 :disabled="true"
               ></b-form-input>
-              <b-input-group-append>
-                <b-button variant="primary" v-clipboard:copy="form.authCode"
-                  >Copy</b-button
-                >
-              </b-input-group-append>
-            </b-input-group>
-          </b-form-group>
-        </b-col>
-      </b-row>
-
-      <b-row v-if="isGoogle">
-        <b-col lg="6">
-          <b-form-group
-            id="access-token-group"
-            label="Access Token"
-            label-for="access-token-input"
-          >
-            <b-input-group>
+            </b-form-group>
+          </b-col>
+          <b-col lg="6">
+            <b-form-group
+              id="token-endpoint-group"
+              label="Token Endpoint"
+              label-for="token-endpoint-input"
+            >
               <b-form-input
-                id="access-token-input"
-                v-model="form.access_token"
+                id="token-endpoint-input"
+                v-model="form.tokenEndpoint"
                 type="text"
                 :disabled="true"
               ></b-form-input>
-              <b-input-group-append>
-                <b-button variant="primary" v-clipboard:copy="form.access_token"
-                  >Copy</b-button
-                >
-              </b-input-group-append>
-            </b-input-group>
-          </b-form-group>
-        </b-col>
-        <b-col lg="6">
-          <b-form-group
-            id="refresh-token-group"
-            label="Refresh Token"
-            label-for="refresh-token-input"
-          >
-            <b-input-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col lg="6">
+            <b-form-group
+              id="redirect-uri-group"
+              label="Redirect URI"
+              label-for="redirect-uri-input"
+            >
               <b-form-input
-                id="refresh-token-input"
-                v-model="form.refresh_token"
+                id="redirect-uri-input"
+                v-model="form.redirectUri"
                 type="text"
                 :disabled="true"
               ></b-form-input>
-              <b-input-group-append>
-                <b-button
-                  variant="primary"
-                  v-clipboard:copy="form.refresh_token"
-                  >Copy</b-button
-                >
-              </b-input-group-append>
-            </b-input-group>
-          </b-form-group>
-        </b-col>
-      </b-row>
+            </b-form-group>
+          </b-col>
+          <b-col lg="6">
+            <b-form-group
+              id="scope-group"
+              label="Scope"
+              label-for="scope-input"
+            >
+              <b-form-input
+                id="scope-input"
+                v-model="form.scope"
+                type="text"
+                placeholder=""
+                :disabled="true"
+              ></b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
 
-      <b-row v-if="isGoogle">
-        <b-col>
-          <b-button variant="primary" @click="getAuthCode">
-            Get Credentials
-            <b-spinner small v-if="workflow.showSpinner" />
-          </b-button>
-        </b-col>
-      </b-row>
+        <b-row>
+          <b-col lg="6">
+            <b-form-group
+              id="state-group"
+              label="State"
+              label-for="state-input"
+            >
+              <b-form-input
+                id="state-input"
+                v-model="form.state"
+                type="text"
+                :disabled="true"
+              ></b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col lg="6">
+            <b-form-group
+              id="custom-parameters-group"
+              label="Custom Parameters (Form-Encoded, Optional)"
+              label-for="custom-parameters-input"
+            >
+              <b-form-input
+                id="custom-parameters-input"
+                v-model="form.customParameters"
+                type="text"
+                placeholder=""
+                :disabled="true"
+              ></b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-form-group
+              id="authorization-code-group"
+              label="Authorization Code"
+              label-for="authorization-code-input"
+            >
+              <b-input-group>
+                <b-form-input
+                  id="authorization-code-input"
+                  v-model="form.authCode"
+                  type="text"
+                  :disabled="true"
+                ></b-form-input>
+                <b-input-group-append>
+                  <b-button variant="primary" v-clipboard:copy="form.authCode"
+                    >Copy</b-button
+                  >
+                </b-input-group-append>
+              </b-input-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col lg="6">
+            <b-form-group
+              id="access-token-group"
+              label="Access Token"
+              label-for="access-token-input"
+            >
+              <b-input-group>
+                <b-form-input
+                  id="access-token-input"
+                  v-model="form.access_token"
+                  type="text"
+                  :disabled="true"
+                ></b-form-input>
+                <b-input-group-append>
+                  <b-button
+                    variant="primary"
+                    v-clipboard:copy="form.access_token"
+                    >Copy</b-button
+                  >
+                </b-input-group-append>
+              </b-input-group>
+            </b-form-group>
+          </b-col>
+          <b-col lg="6">
+            <b-form-group
+              id="refresh-token-group"
+              label="Refresh Token"
+              label-for="refresh-token-input"
+            >
+              <b-input-group>
+                <b-form-input
+                  id="refresh-token-input"
+                  v-model="form.refresh_token"
+                  type="text"
+                  :disabled="true"
+                ></b-form-input>
+                <b-input-group-append>
+                  <b-button
+                    variant="primary"
+                    v-clipboard:copy="form.refresh_token"
+                    >Copy</b-button
+                  >
+                </b-input-group-append>
+              </b-input-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-button variant="primary" @click="getAuthCode">
+              Get Credentials
+              <b-spinner small v-if="workflow.showSpinner" />
+            </b-button>
+          </b-col>
+        </b-row>
+      </div>
     </b-form>
 
     <div v-if="isAccounts">
@@ -311,19 +323,18 @@
           </b-col>
         </b-row>
       </div>
-    </div>
-
-    <b-row v-if="isAccounts">
       <br />
-      <b-button variant="primary" class="ml-3" @click="appendAccounts">
-        Add Account
-        <b-spinner small v-if="workflow.showSpinner" />
-      </b-button>
-      <b-button variant="primary" class="ml-2" @click="removeAccounts">
-        Remove Account
-        <b-spinner small v-if="workflow.showSpinner" />
-      </b-button>
-    </b-row>
+      <b-row>
+        <b-button variant="primary" class="ml-3" @click="appendAccounts">
+          Add Account
+          <b-spinner small v-if="workflow.showSpinner" />
+        </b-button>
+        <b-button variant="primary" class="ml-2" @click="removeAccounts">
+          Remove Account
+          <b-spinner small v-if="workflow.showSpinner" />
+        </b-button>
+      </b-row>
+    </div>
 
     <div v-if="isCategories">
       <div
@@ -432,19 +443,69 @@
           </b-col>
         </b-row>
       </div>
+      <br />
+      <b-row>
+        <b-button variant="primary" class="ml-3" @click="appendCategories">
+          Add Category
+          <b-spinner small v-if="workflow.showSpinner" />
+        </b-button>
+        <b-button variant="primary" class="ml-2" @click="removeCategories">
+          Remove Category
+          <b-spinner small v-if="workflow.showSpinner" />
+        </b-button>
+      </b-row>
     </div>
 
-    <b-row v-if="isCategories">
-      <br />
-      <b-button variant="primary" class="ml-3" @click="appendCategories">
-        Add Category
-        <b-spinner small v-if="workflow.showSpinner" />
-      </b-button>
-      <b-button variant="primary" class="ml-2" @click="removeCategories">
-        Remove Category
-        <b-spinner small v-if="workflow.showSpinner" />
-      </b-button>
-    </b-row>
+    <div v-if="isUI">
+      <b-row>
+        <b-col>
+          <b-form-group
+            id="title-group"
+            label="Website Title"
+            label-for="title-input"
+          >
+            <b-input-group>
+              <b-form-input
+                id="title-input"
+                v-model="form.ui_config.title"
+                type="text"
+              ></b-form-input>
+            </b-input-group>
+          </b-form-group>
+        </b-col>
+        <b-col>
+          <b-form-group
+            id="icon-group"
+            label="Website Icon URL"
+            label-for="icon-input"
+          >
+            <b-input-group>
+              <b-form-input
+                id="icon-input"
+                v-model="form.ui_config.icon"
+                type="text"
+              ></b-form-input>
+            </b-input-group>
+          </b-form-group>
+        </b-col>
+        <b-col>
+          <b-form-group
+            id="range-group"
+            label="Range"
+            label-for="range-input"
+          >
+            <b-input-group>
+              <b-form-input
+                id="range-input"
+                v-model="form.ui_config.range"
+                value="16"
+                type="number"
+              ></b-form-input>
+            </b-input-group>
+          </b-form-group>
+        </b-col>
+      </b-row>
+    </div>
 
     <b-row v-if="isExtras">
       <b-col lg="6">
@@ -483,7 +544,7 @@
       </b-col>
     </b-row>
     <b-row v-if="isExtras">
-      <b-col lg="5">
+      <b-col lg="4">
         <b-form-group
           id="cloudflare-group"
           label="Cloudflare"
@@ -498,7 +559,7 @@
           </b-input-group>
         </b-form-group>
       </b-col>
-      <b-col lg="5">
+      <b-col lg="3">
         <b-form-group id="arcio-group" label="Arc.io" label-for="arcio-input">
           <b-input-group>
             <b-form-input
@@ -526,10 +587,19 @@
           </b-input-group>
         </b-form-group>
       </b-col>
+      <b-col lg="3">
+        <b-form-group id="service-accounts-group" label="Service Accounts">
+          <b-form-file
+            ref="file-input"
+            id="service-accounts-input"
+            @change="sa_zip_file"
+          ></b-form-file>
+        </b-form-group>
+      </b-col>
     </b-row>
 
     <b-row v-if="isExtras">
-      <b-col lg="2">
+      <b-col>
         <b-form-group
           id="transcoded-group"
           label="Transcoded"
@@ -556,7 +626,7 @@
           </b-dropdown>
         </b-form-group>
       </b-col>
-      <b-col lg="2">
+      <b-col>
         <b-form-group
           id="subtitles-group"
           label="Subtitles"
@@ -583,7 +653,7 @@
           </b-dropdown>
         </b-form-group>
       </b-col>
-      <b-col lg="2">
+      <b-col>
         <b-form-group
           id="signup-group"
           label="Sign Up"
@@ -609,7 +679,7 @@
           </b-dropdown>
         </b-form-group>
       </b-col>
-      <b-col lg="2">
+      <b-col>
         <b-form-group
           id="auth-group"
           label="Authentication"
@@ -635,7 +705,7 @@
           </b-dropdown>
         </b-form-group>
       </b-col>
-      <b-col lg="2">
+      <b-col>
         <b-form-group
           id="build-type-group"
           label="Build Type"
@@ -661,13 +731,58 @@
           </b-dropdown>
         </b-form-group>
       </b-col>
-      <b-col lg="2">
-        <b-form-group id="service-accounts-group" label="Service Accounts">
-          <b-form-file
-            ref="file-input"
-            id="service-accounts-input"
-            @change="sa_zip_file"
-          ></b-form-file>
+      <b-col>
+        <b-form-group
+          id="prefer-mkv-group"
+          label="Prefer MKV"
+          label-for="prefer-mkv-input"
+        >
+          <b-dropdown
+            variant="primary"
+            :text="form.prefer_mkv"
+            id="prefer-mkv-input"
+            v-model="form.prefer_mkv"
+          >
+            <b-dropdown-item disabled value="False"
+              >Select whether libDrive should prefer MKV videos over other
+              formats in the quality list</b-dropdown-item
+            >
+            <b-dropdown-item
+              v-for="option in ['True', 'False']"
+              :key="option"
+              :value="option"
+              @click="form.prefer_mkv = option"
+            >
+              {{ option }}
+            </b-dropdown-item>
+          </b-dropdown>
+        </b-form-group>
+      </b-col>
+      <b-col>
+        <b-form-group
+          id="prefer-mp4-group"
+          label="Prefer MP4"
+          label-for="prefer-mp4-input"
+        >
+          <b-dropdown
+            variant="primary"
+            :text="form.prefer_mp4"
+            id="prefer-mp4-input"
+            v-model="form.prefer_mp4"
+          >
+            <b-dropdown-item disabled value="True">
+              Select whether libDrive should prefer MP4 videos over other
+              formats in the quality list
+            </b-dropdown-item>
+            <b-dropdown-item
+              v-for="option in ['True', 'False']"
+              :key="option"
+              :value="option"
+              @click="form.prefer_mp4 = option"
+            >
+              {{ option }}
+            </b-dropdown-item>
+          </b-dropdown>
         </b-form-group>
       </b-col>
     </b-row>
@@ -741,6 +856,7 @@ import {
   GOOGLE,
   ACCOUNTS,
   CATEGORIES,
+  UI,
   EXTRAS,
   GENERATE,
 } from "./lib/workflowStates";
@@ -771,6 +887,9 @@ export default {
     },
     isCategories() {
       return this.workflow.state === CATEGORIES;
+    },
+    isUI() {
+      return this.workflow.state === UI;
     },
     isExtras() {
       return this.workflow.state === EXTRAS;
@@ -808,16 +927,20 @@ export default {
         build_interval: cache.build_interval,
         build_type: cache.build_type,
         arcio: cache.arcio,
+        prefer_mkv: cache.prefer_mkv,
+        prefer_mp4: cache.prefer_mp4,
         transcoded: cache.transcoded,
         service_accounts: cache.service_accounts,
         signup: cache.signup,
         subtitles: cache.subtitles,
         auth: cache.auth,
 
+        ui_config: cache.ui_config,
+
         configBox: cache.configBox,
       },
       workflow: {
-        options: [GOOGLE, ACCOUNTS, CATEGORIES, EXTRAS, GENERATE],
+        options: [GOOGLE, ACCOUNTS, CATEGORIES, UI, EXTRAS, GENERATE],
         showSpinner: false,
         state: GOOGLE,
       },
@@ -986,10 +1109,13 @@ export default {
       config.secret_key = this.form.secret_key;
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
+      config.prefer_mkv = this.form.prefer_mkv.toLowerCase() == "true" || false;
+      config.prefer_mp4 = this.form.prefer_mp4.toLowerCase() == "true" || true;
       config.transcoded = this.form.transcoded.toLowerCase() == "true" || false;
       config.service_accounts = this.form.service_accounts;
       config.subtitles = this.form.subtitles.toLowerCase() == "true" || false;
       config.signup = this.form.signup.toLowerCase() === "true" || false;
+      config.ui_config = this.form.ui_config;
       this.form.configBox = JSON.stringify(config, null, 4);
 
       this.updateAllCacheValues();
@@ -1010,10 +1136,13 @@ export default {
       config.secret_key = this.form.secret_key;
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
+      config.prefer_mkv = this.form.prefer_mkv.toLowerCase() == "true" || false;
+      config.prefer_mp4 = this.form.prefer_mp4.toLowerCase() == "true" || true;
       config.transcoded = this.form.transcoded.toLowerCase() == "true" || false;
       config.service_accounts = this.form.service_accounts;
       config.subtitles = this.form.subtitles.toLowerCase() == "true" || false;
       config.signup = this.form.signup.toLowerCase() === "true" || false;
+      config.ui_config = this.form.ui_config;
       this.form.configBox = JSON.stringify(config);
 
       this.updateAllCacheValues();
@@ -1067,6 +1196,7 @@ export default {
       cache.secret_key = this.form.secret_key;
       cache.service_accounts = this.form.service_accounts;
       cache.tmdb_api_key = this.form.tmdb_api_key;
+      cache.ui_config = this.form.ui_config;
       cache.configBox = this.form.configBox;
     },
   },
