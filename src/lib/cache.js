@@ -14,7 +14,7 @@ module.exports = {
   },
 
   get auth() {
-    return window.sessionStorage.getItem("auth") || "True";
+    return window.sessionStorage.getItem("auth") || true;
   },
   set auth(value) {
     window.sessionStorage.setItem("auth", value);
@@ -63,46 +63,42 @@ module.exports = {
   },
 
   get prefer_mkv() {
-    return window.sessionStorage.getItem("prefer_mkv") || "False";
+    return window.sessionStorage.getItem("prefer_mkv") || false;
   },
   set prefer_mkv(value) {
     window.sessionStorage.setItem("prefer_mkv", value);
   },
 
   get prefer_mp4() {
-    return window.sessionStorage.getItem("prefer_mp4") || "False";
+    return window.sessionStorage.getItem("prefer_mp4") || false;
   },
   set prefer_mp4(value) {
     window.sessionStorage.setItem("prefer_mp4", value);
   },
 
   get transcoded() {
-    return window.sessionStorage.getItem("transcoded") || "False";
+    return window.sessionStorage.getItem("transcoded") || false;
   },
   set transcoded(value) {
     window.sessionStorage.setItem("transcoded", value);
   },
 
   get signup() {
-    return window.sessionStorage.getItem("signup") || "False";
+    return window.sessionStorage.getItem("signup") || false;
   },
   set signup(value) {
     window.sessionStorage.setItem("signup", value);
   },
 
   get subtitles() {
-    return window.sessionStorage.getItem("subtitles") || "False";
+    return window.sessionStorage.getItem("subtitles") || false;
   },
   set subtitles(value) {
     window.sessionStorage.setItem("subtitles", value);
   },
 
   get ui_config() {
-    var ui_config = JSON.parse(window.sessionStorage.getItem("ui_config")) || {};
-    if (!ui_config.range) {
-      ui_config.range = "16";
-    }
-    return ui_config;
+    return JSON.parse(window.sessionStorage.getItem("ui_config")) || {};
   },
   set ui_config(value) {
     window.sessionStorage.setItem("ui_config", JSON.stringify(value));

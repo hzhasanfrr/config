@@ -414,32 +414,15 @@
               </b-dropdown>
             </b-form-group>
           </b-col>
-          <b-col lg="1">
-            <b-form-group
-              id="category-anilist-group"
-              label="Anilist"
-              label-for="category-anilist-input"
+          <b-col lg="1" style="display: flex; align-items: center">
+            <b-form-checkbox
+              v-model="form.category_list[index].anilist"
+              name="category-anilist-switch"
+              size="lg"
+              switch
             >
-              <b-dropdown
-                variant="primary"
-                :text="form.category_list[index].anilist.toString()"
-                id="category-anilist-input"
-                v-model="form.category_list[index].anilist"
-              >
-                <b-dropdown-item disabled value="false"
-                  >Do you want to enable anilist for this
-                  category</b-dropdown-item
-                >
-                <b-dropdown-item
-                  v-for="option in [true, false]"
-                  :key="option"
-                  :value="option"
-                  @click="form.category_list[index].anilist = option"
-                >
-                  {{ option }}
-                </b-dropdown-item>
-              </b-dropdown>
-            </b-form-group>
+              Anilist
+            </b-form-checkbox>
           </b-col>
         </b-row>
       </div>
@@ -489,20 +472,24 @@
           </b-form-group>
         </b-col>
         <b-col>
-          <b-form-group
-            id="range-group"
-            label="Range"
-            label-for="range-input"
-          >
+          <b-form-group id="range-group" label="Range" label-for="range-input">
             <b-input-group>
               <b-form-input
                 id="range-input"
                 v-model="form.ui_config.range"
-                value="16"
                 type="number"
               ></b-form-input>
             </b-input-group>
           </b-form-group>
+        </b-col>
+        <b-col style="display: flex; align-items: center">
+          <b-form-checkbox
+            v-model="form.ui_config.icon_on_nav"
+            name="icon-on-nav-switch"
+            switch
+          >
+            Icon On Nav
+          </b-form-checkbox>
         </b-col>
       </b-row>
     </div>
@@ -601,112 +588,6 @@
     <b-row v-if="isExtras">
       <b-col>
         <b-form-group
-          id="transcoded-group"
-          label="Transcoded"
-          label-for="transcoded-input"
-        >
-          <b-dropdown
-            variant="primary"
-            :text="form.transcoded"
-            id="transcoded-input"
-            v-model="form.transcoded"
-          >
-            <b-dropdown-item disabled value="False"
-              >Select whether pre-transcoded videos should be
-              used</b-dropdown-item
-            >
-            <b-dropdown-item
-              v-for="option in ['True', 'False']"
-              :key="option"
-              :value="option"
-              @click="form.transcoded = option"
-            >
-              {{ option }}
-            </b-dropdown-item>
-          </b-dropdown>
-        </b-form-group>
-      </b-col>
-      <b-col>
-        <b-form-group
-          id="subtitles-group"
-          label="Subtitles"
-          label-for="subtitles-input"
-        >
-          <b-dropdown
-            variant="primary"
-            :text="form.subtitles"
-            id="subtitles-input"
-            v-model="form.subtitles"
-          >
-            <b-dropdown-item disabled value="False"
-              >Select whether subtitles should be scanned from Google Drive
-              folders</b-dropdown-item
-            >
-            <b-dropdown-item
-              v-for="option in ['True', 'False']"
-              :key="option"
-              :value="option"
-              @click="form.subtitles = option"
-            >
-              {{ option }}
-            </b-dropdown-item>
-          </b-dropdown>
-        </b-form-group>
-      </b-col>
-      <b-col>
-        <b-form-group
-          id="signup-group"
-          label="Sign Up"
-          label-for="signup-input"
-        >
-          <b-dropdown
-            variant="primary"
-            :text="form.signup"
-            id="signup-input"
-            v-model="form.signup"
-          >
-            <b-dropdown-item disabled value="False"
-              >Select whether user sign up should be enabled</b-dropdown-item
-            >
-            <b-dropdown-item
-              v-for="option in ['True', 'False']"
-              :key="option"
-              :value="option"
-              @click="form.signup = option"
-            >
-              {{ option }}
-            </b-dropdown-item>
-          </b-dropdown>
-        </b-form-group>
-      </b-col>
-      <b-col>
-        <b-form-group
-          id="auth-group"
-          label="Authentication"
-          label-for="auth-input"
-        >
-          <b-dropdown
-            variant="primary"
-            :text="form.auth"
-            id="auth-input"
-            v-model="form.auth"
-          >
-            <b-dropdown-item disabled value="False"
-              >Select whether authentication should be enabled</b-dropdown-item
-            >
-            <b-dropdown-item
-              v-for="option in ['True', 'False']"
-              :key="option"
-              :value="option"
-              @click="form.auth = option"
-            >
-              {{ option }}
-            </b-dropdown-item>
-          </b-dropdown>
-        </b-form-group>
-      </b-col>
-      <b-col>
-        <b-form-group
           id="build-type-group"
           label="Build Type"
           label-for="build-type-input"
@@ -731,59 +612,59 @@
           </b-dropdown>
         </b-form-group>
       </b-col>
-      <b-col>
-        <b-form-group
-          id="prefer-mkv-group"
-          label="Prefer MKV"
-          label-for="prefer-mkv-input"
+      <b-col style="display: flex; align-items: center">
+        <b-form-checkbox
+          v-model="form.transcoded"
+          name="transcoded-switch"
+          switch
         >
-          <b-dropdown
-            variant="primary"
-            :text="form.prefer_mkv"
-            id="prefer-mkv-input"
-            v-model="form.prefer_mkv"
-          >
-            <b-dropdown-item disabled value="False"
-              >Select whether libDrive should prefer MKV videos over other
-              formats in the quality list</b-dropdown-item
-            >
-            <b-dropdown-item
-              v-for="option in ['True', 'False']"
-              :key="option"
-              :value="option"
-              @click="form.prefer_mkv = option"
-            >
-              {{ option }}
-            </b-dropdown-item>
-          </b-dropdown>
-        </b-form-group>
+          Transcoded
+        </b-form-checkbox>
       </b-col>
-      <b-col>
-        <b-form-group
-          id="prefer-mp4-group"
-          label="Prefer MP4"
-          label-for="prefer-mp4-input"
+      <b-col style="display: flex; align-items: center">
+        <b-form-checkbox
+          v-model="form.subtitles"
+          name="subtitles-switch"
+          switch
         >
-          <b-dropdown
-            variant="primary"
-            :text="form.prefer_mp4"
-            id="prefer-mp4-input"
-            v-model="form.prefer_mp4"
-          >
-            <b-dropdown-item disabled value="True">
-              Select whether libDrive should prefer MP4 videos over other
-              formats in the quality list
-            </b-dropdown-item>
-            <b-dropdown-item
-              v-for="option in ['True', 'False']"
-              :key="option"
-              :value="option"
-              @click="form.prefer_mp4 = option"
-            >
-              {{ option }}
-            </b-dropdown-item>
-          </b-dropdown>
-        </b-form-group>
+          Subtitles
+        </b-form-checkbox>
+      </b-col>
+      <b-col style="display: flex; align-items: center">
+        <b-form-checkbox
+          v-model="form.signup"
+          name="signup-switch"
+          switch
+        >
+          Sign Up
+        </b-form-checkbox>
+      </b-col>
+      <b-col style="display: flex; align-items: center">
+        <b-form-checkbox
+          v-model="form.auth"
+          name="auth-switch"
+          switch
+        >
+          Authentication
+        </b-form-checkbox>
+      </b-col>
+      <b-col style="display: flex; align-items: center">
+        <b-form-checkbox
+          v-model="form.prefer_mkv"
+          name="prefer-mkv-switch"
+          switch
+        >
+          Prefer MKV
+        </b-form-checkbox>
+      </b-col>
+      <b-col style="display: flex; align-items: center">
+        <b-form-checkbox
+          v-model="form.prefer_mp4"
+          name="prefer-mp4-switch"
+          switch
+        >
+          Prefer MP4
+        </b-form-checkbox>
       </b-col>
     </b-row>
 
@@ -1098,7 +979,7 @@ export default {
       config.access_token = this.form.access_token;
       config.account_list = this.form.account_list;
       config.arcio = this.form.arcio;
-      config.auth = this.form.auth.toLowerCase() === "true" || false;
+      config.auth = this.form.auth;
       config.build_interval = parseInt(this.form.build_interval);
       config.build_type = this.form.build_type;
       config.category_list = this.form.category_list;
@@ -1109,12 +990,12 @@ export default {
       config.secret_key = this.form.secret_key;
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
-      config.prefer_mkv = this.form.prefer_mkv.toLowerCase() == "true" || false;
-      config.prefer_mp4 = this.form.prefer_mp4.toLowerCase() == "true" || true;
-      config.transcoded = this.form.transcoded.toLowerCase() == "true" || false;
+      config.prefer_mkv = this.form.prefer_mkv;
+      config.prefer_mp4 = this.form.prefer_mp4;
+      config.transcoded = this.form.transcoded;
       config.service_accounts = this.form.service_accounts;
-      config.subtitles = this.form.subtitles.toLowerCase() == "true" || false;
-      config.signup = this.form.signup.toLowerCase() === "true" || false;
+      config.subtitles = this.form.subtitles;
+      config.signup = this.form.signup;
       config.ui_config = this.form.ui_config;
       this.form.configBox = JSON.stringify(config, null, 4);
 
@@ -1125,7 +1006,7 @@ export default {
       config.access_token = this.form.access_token;
       config.account_list = this.form.account_list;
       config.arcio = this.form.arcio;
-      config.auth = this.form.auth.toLowerCase() === "true" || false;
+      config.auth = this.form.auth;
       config.build_interval = parseInt(this.form.build_interval);
       config.build_type = this.form.build_type;
       config.category_list = this.form.category_list;
@@ -1136,12 +1017,12 @@ export default {
       config.secret_key = this.form.secret_key;
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
-      config.prefer_mkv = this.form.prefer_mkv.toLowerCase() == "true" || false;
-      config.prefer_mp4 = this.form.prefer_mp4.toLowerCase() == "true" || true;
-      config.transcoded = this.form.transcoded.toLowerCase() == "true" || false;
+      config.prefer_mkv = this.form.prefer_mkv;
+      config.prefer_mp4 = this.form.prefer_mp4;
+      config.transcoded = this.form.transcoded;
       config.service_accounts = this.form.service_accounts;
-      config.subtitles = this.form.subtitles.toLowerCase() == "true" || false;
-      config.signup = this.form.signup.toLowerCase() === "true" || false;
+      config.subtitles = this.form.subtitles;
+      config.signup = this.form.signup;
       config.ui_config = this.form.ui_config;
       this.form.configBox = JSON.stringify(config);
 
