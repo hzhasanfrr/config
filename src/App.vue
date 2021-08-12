@@ -1128,6 +1128,7 @@ export default {
       cache.secret_key = this.form.secret_key;
       cache.service_accounts = this.form.service_accounts;
       cache.signup = this.form.signup;
+      cache.state = this.form.state;
       cache.subtitles = this.form.subtitles;
       cache.tmdb_api_key = this.form.tmdb_api_key;
       cache.token_endpoint = this.form.token_endpoint;
