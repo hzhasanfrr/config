@@ -118,11 +118,11 @@ module.exports = {
     window.sessionStorage.setItem("signup", value);
   },
 
-  get subtitles() {
-    return window.sessionStorage.getItem("subtitles") || false;
+  get remove_duplicates() {
+    return window.sessionStorage.getItem("remove_duplicates") || false;
   },
-  set subtitles(value) {
-    window.sessionStorage.setItem("subtitles", value);
+  set remove_duplicates(value) {
+    window.sessionStorage.setItem("remove_duplicates", value);
   },
 
   get ui_config() {

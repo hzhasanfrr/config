@@ -889,7 +889,7 @@ export default {
         service_accounts: cache.service_accounts,
         signup: cache.signup,
         state: cache.state || generateState(),
-        subtitles: cache.subtitles,
+        remove_duplicates: cache.remove_duplicates,
         tmdb_api_key: cache.tmdb_api_key,
         token_endpoint: cache.token_endpoint,
         transcoded: cache.transcoded,
@@ -1073,7 +1073,7 @@ export default {
       config.prefer_mp4 = this.form.prefer_mp4;
       config.transcoded = this.form.transcoded;
       config.service_accounts = this.form.service_accounts;
-      config.subtitles = this.form.subtitles;
+      config.remove_duplicates = this.form.remove_duplicates;
       config.signup = this.form.signup;
       config.ui_config = this.form.ui_config;
       this.form.config_box = JSON.stringify(config, null, 4);
@@ -1103,7 +1103,7 @@ export default {
       config.prefer_mp4 = this.form.prefer_mp4;
       config.transcoded = this.form.transcoded;
       config.service_accounts = this.form.service_accounts;
-      config.subtitles = this.form.subtitles;
+      config.remove_duplicates = this.form.remove_duplicates;
       config.signup = this.form.signup;
       config.ui_config = this.form.ui_config;
       this.form.config_box = JSON.stringify(config);
@@ -1169,7 +1169,7 @@ export default {
       cache.service_accounts = this.form.service_accounts;
       cache.signup = this.form.signup;
       cache.state = this.form.state;
-      cache.subtitles = this.form.subtitles;
+      cache.remove_duplicates = this.form.remove_duplicates;
       cache.tmdb_api_key = this.form.tmdb_api_key;
       cache.token_endpoint = this.form.token_endpoint;
       cache.token_expiry = "";
