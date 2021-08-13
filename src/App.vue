@@ -663,8 +663,9 @@
 
     <div v-if="isExtras">
       <b-row>
-        <b-col class="switch-css">
+        <b-col lg="3" class="switch-css">
           <b-form-checkbox
+            class="no__overflow"
             v-model="form.transcoded"
             name="transcoded-switch"
             switch
@@ -672,32 +673,62 @@
             Transcoded
           </b-form-checkbox>
         </b-col>
-        <b-col class="switch-css">
+        <b-col lg="3" class="switch-css">
           <b-form-checkbox
-            v-model="form.subtitles"
-            name="subtitles-switch"
+            class="no__overflow"
+            v-model="form.fetch_assets"
+            name="fetch-assets-switch"
             switch
           >
-            Subtitles
+            Fetch Assets
           </b-form-checkbox>
         </b-col>
-        <b-col class="switch-css">
-          <b-form-checkbox v-model="form.signup" name="signup-switch" switch>
+        <b-col lg="3" class="switch-css">
+          <b-form-checkbox
+            class="no__overflow"
+            v-model="form.signup"
+            name="signup-switch"
+            switch
+          >
             Sign Up
           </b-form-checkbox>
         </b-col>
-        <b-col class="switch-css">
-          <b-form-checkbox v-model="form.adult" name="adult-switch" switch>
+        <b-col lg="3" class="switch-css">
+          <b-form-checkbox
+            class="no__overflow"
+            v-model="form.adult"
+            name="adult-switch"
+            switch
+          >
             Adult
           </b-form-checkbox>
         </b-col>
-        <b-col class="switch-css">
-          <b-form-checkbox v-model="form.auth" name="auth-switch" switch>
+      </b-row>
+      <br />
+      <b-row>
+        <b-col lg="3" class="switch-css">
+          <b-form-checkbox
+            class="no__overflow"
+            v-model="form.remove_duplicates"
+            name="remove-duplicates-switch"
+            switch
+          >
+            Remove Duplicates
+          </b-form-checkbox>
+        </b-col>
+        <b-col lg="3" class="switch-css">
+          <b-form-checkbox
+            class="no__overflow"
+            v-model="form.auth"
+            name="auth-switch"
+            switch
+          >
             Authentication
           </b-form-checkbox>
         </b-col>
-        <b-col class="switch-css">
+        <b-col lg="3" class="switch-css">
           <b-form-checkbox
+            class="no__overflow"
             v-model="form.prefer_mkv"
             name="prefer-mkv-switch"
             switch
@@ -705,8 +736,9 @@
             Prefer MKV
           </b-form-checkbox>
         </b-col>
-        <b-col class="switch-css">
+        <b-col lg="3" class="switch-css">
           <b-form-checkbox
+            class="no__overflow"
             v-model="form.prefer_mp4"
             name="prefer-mp4-switch"
             switch
@@ -846,10 +878,12 @@ export default {
         cloudflare: cache.cloudflare,
         config_box: cache.config_box,
         custom_parameters: cache.custom_parameters,
+        fetch_assets: cache.fetch_assets,
         prefer_mkv: cache.prefer_mkv,
         prefer_mp4: cache.prefer_mp4,
         redirect_uri: window.location.origin,
         refresh_token: cache.refresh_token,
+        remove_duplicates: cache.remove_duplicates,
         scope: cache.scope,
         secret_key: cache.secret_key,
         service_accounts: cache.service_accounts,
@@ -1029,7 +1063,9 @@ export default {
       config.client_id = this.form.client_id;
       config.client_secret = this.form.client_secret;
       config.cloudflare = this.form.cloudflare;
+      config.fetch_assets = this.form.fetch_assets;
       config.refresh_token = this.form.refresh_token;
+      config.remove_duplicates = this.form.remove_duplicates;
       config.secret_key = this.form.secret_key;
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
@@ -1057,7 +1093,9 @@ export default {
       config.client_id = this.form.client_id;
       config.client_secret = this.form.client_secret;
       config.cloudflare = this.form.cloudflare;
+      config.fetch_assets = this.form.fetch_assets;
       config.refresh_token = this.form.refresh_token;
+      config.remove_duplicates = this.form.remove_duplicates;
       config.secret_key = this.form.secret_key;
       config.tmdb_api_key = this.form.tmdb_api_key;
       config.token_expiry = "";
@@ -1121,9 +1159,11 @@ export default {
       cache.client_secret = this.form.client_secret;
       cache.cloudflare = this.form.cloudflare;
       cache.custom_parameters = this.form.custom_parameters;
+      cache.fetch_assets = this.form.fetch_assets;
       cache.prefer_mkv = this.form.prefer_mkv;
       cache.prefer_mp4 = this.form.prefer_mp4;
       cache.refresh_token = this.form.refresh_token;
+      cache.remove_duplicates = this.form.remove_duplicates;
       cache.scope = this.form.scope;
       cache.secret_key = this.form.secret_key;
       cache.service_accounts = this.form.service_accounts;
@@ -1177,5 +1217,9 @@ body {
 .switch-css {
   display: flex;
   align-items: center;
+}
+.no__overflow {
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>
