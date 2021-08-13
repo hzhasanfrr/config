@@ -444,7 +444,7 @@
 
     <div v-if="isUI">
       <b-row>
-        <b-col>
+        <b-col lg="6">
           <b-form-group
             id="title-group"
             label="Website Title"
@@ -459,7 +459,7 @@
             </b-input-group>
           </b-form-group>
         </b-col>
-        <b-col>
+        <b-col lg="6">
           <b-form-group
             id="icon-group"
             label="Website Icon URL"
@@ -475,7 +475,7 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <b-row>
+      <b-row lg="4">
         <b-col>
           <b-form-group
             id="custom-button-text-group"
@@ -491,7 +491,7 @@
             </b-input-group>
           </b-form-group>
         </b-col>
-        <b-col>
+        <b-col lg="4">
           <b-form-group
             id="custom-button-url-group"
             label="Custom Button URL"
@@ -506,7 +506,7 @@
             </b-input-group>
           </b-form-group>
         </b-col>
-        <b-col>
+        <b-col lg="2">
           <b-form-group id="range-group" label="Range" label-for="range-input">
             <b-input-group>
               <b-form-input
@@ -517,7 +517,7 @@
             </b-input-group>
           </b-form-group>
         </b-col>
-        <b-col class="switch-css">
+        <b-col lg="2" class="switch-css">
           <b-form-checkbox
             v-model="form.ui_config.icon_on_nav"
             name="icon-on-nav-switch"
